@@ -69,16 +69,7 @@ func Main(args []string) int {
 		errf(err)
 		return 2
 	}
-	// --slice all is the whole deb alone; a real slice named all is refused
-	// by the run when --all is given, and is just a slice otherwise.
-	only, all := f.Slices, f.All
-	if i := indexOf(only, listing.AllSlice); i >= 0 {
-		all = true
-		only = append(only[:i:i], only[i+1:]...)
-		if len(only) == 0 {
-			only = []string{}
-		}
-	}
+	deb, only := selectSlices(f.Slices)
 
 	// On the first interrupt the cuts stop and the temp dirs go; a second
 	// one ends the process at once.
@@ -102,7 +93,7 @@ func Main(args []string) int {
 
 	opts := listing.Options{
 		Backend: backend,
-		All:     all,
+		Deb:     deb,
 		Cuts: cuts.Options{
 			Release: dir,
 			Arches:  arches,
@@ -152,9 +143,8 @@ func Main(args []string) int {
 type flags struct {
 	Release string   `long:"release" value-name:"<dir|name>" default:"." description:"chisel-releases checkout, or a release name like ubuntu-24.04 fetched by chisel into its cache"`
 	Arches  []string `long:"arch" value-name:"<a>[,<a>...]" description:"architectures to list; \"all\" for every one (default: host)"`
-	Slices  []string `long:"slice" value-name:"<s>[,<s>...]" description:"only these slices, bare or <package>_<slice>; \"all\" is the whole deb (default: all slices)"`
+	Slices  []string `long:"slice" value-name:"<s>[,<s>...]" description:"slices to list, bare or <package>_<slice>; \"deb\" is the whole deb, which needs no slice definition file, \"all\" is every slice (default: deb)"`
 	Ignores []string `long:"ignore" value-name:"<glob>[,...]" description:"leave matching paths out (chisel glob syntax)"`
-	All     bool     `long:"all" description:"list the whole deb too, as slice \"all\"; works without a slice definition file"`
 	Backend string   `long:"backend" value-name:"<file|builtin>" description:"what runs file: the binary on PATH, or the built-in port (default: file when found)"`
 	Raw     bool     `long:"raw" description:"show file's lines as they are, no normalising; with --json, add every architecture's raw line"`
 	NoGroup bool     `long:"no-group" description:"one block per architecture, raw paths and lines, instead of folding architectures with the same result"`
@@ -223,13 +213,30 @@ func splitLists(vals []string) []string {
 	return out
 }
 
-func indexOf(list []string, s string) int {
-	for i, x := range list {
-		if x == s {
-			return i
+// selectSlices reads the --slice values: "deb" lists the whole deb, "all"
+// every slice, any other name that slice. Nothing given is deb alone. The
+// result is whether the deb is listed and what cuts.Options.Only takes:
+// nil for every slice, an empty list for none.
+func selectSlices(given []string) (deb bool, only []string) {
+	if len(given) == 0 {
+		return true, []string{}
+	}
+	all := false
+	only = []string{}
+	for _, s := range given {
+		switch s {
+		case listing.DebSlice:
+			deb = true
+		case "all":
+			all = true
+		default:
+			only = append(only, s)
 		}
 	}
-	return -1
+	if all {
+		only = nil
+	}
+	return deb, only
 }
 
 // chiselVersion is what "chisel version" prints, "" when it cannot be run.

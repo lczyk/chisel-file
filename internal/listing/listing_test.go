@@ -165,6 +165,7 @@ func lines(entries []magic.Entry) []string {
 func TestRunLists(t *testing.T) {
 	f := setup(t)
 	f.opts.Cuts.Ignores = []string{"/usr/share/man/**"}
+	f.opts.Cuts.Only = nil
 	res, err := Run(context.Background(), f.opts, []string{"bash"})
 	assert.NoError(t, err)
 	assert.Len(t, res, 1)
@@ -183,7 +184,7 @@ func TestRunLists(t *testing.T) {
 	})
 	assert.EqualArrays(t, lines(amd64.Slices["config"]), []string{"/etc/skel/.bashrc: ASCII text"})
 	assert.EqualArrays(t, lines(amd64.Slices["scripts"]), []string{})
-	_, whole := amd64.Slices[AllSlice]
+	_, whole := amd64.Slices[DebSlice]
 	assert.That(t, !whole)
 	assert.That(t, !p.Arches[2].Available)
 	assert.Nil(t, p.Arches[2].Slices)
@@ -225,48 +226,50 @@ func TestRunLists(t *testing.T) {
 	assert.Equal(t, flat[0].Slices[1].Files[0].Line, amd64.Slices["bins"][0].Line)
 }
 
-func TestRunAll(t *testing.T) {
+func TestRunDeb(t *testing.T) {
 	f := setup(t)
-	f.opts.All = true
+	f.opts.Deb = true
 	f.opts.Cuts.Arches = []string{"amd64"}
 	f.opts.Cuts.Ignores = []string{"/usr/share/**"}
 	write(t, filepath.Join(f.trees, "amd64", "zsh_cov-all/usr/bin/zsh"), "a shell")
 	res, err := Run(context.Background(), f.opts, []string{"bash", "zsh"})
 	assert.NoError(t, err)
-	assert.EqualArrays(t, res[0].Slices, []string{"all", "config", "bins", "scripts"})
-	assert.EqualArrays(t, lines(res[0].Arches[0].Slices["all"]), []string{
+	assert.EqualArrays(t, res[0].Slices, []string{"deb", "config", "bins", "scripts"})
+	assert.EqualArrays(t, lines(res[0].Arches[0].Slices["deb"]), []string{
 		"/etc/skel/.bashrc: ASCII text",
 		"/usr/bin/bash: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=aa, for GNU/Linux 3.2.0, stripped",
 		"/usr/bin/sh: symbolic link to bash",
 		"/usr/lib/x86_64-linux-gnu/bash/loadables.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, stripped",
 	})
 	// zsh has no sdf: the deb alone.
-	assert.EqualArrays(t, res[1].Slices, []string{"all"})
+	assert.EqualArrays(t, res[1].Slices, []string{"deb"})
 	assert.That(t, res[1].Arches[0].Available)
-	assert.EqualArrays(t, lines(res[1].Arches[0].Slices["all"]), []string{"/usr/bin/zsh: a shell"})
+	assert.EqualArrays(t, lines(res[1].Arches[0].Slices["deb"]), []string{"/usr/bin/zsh: a shell"})
 	assert.Equal(t, f.cuts(t)[0], "amd64 bash_cov-all")
 
-	// --slice all alone.
+	// The deb alone, which is the default.
+	assert.NoError(t, os.Remove(f.log))
 	f.opts.Cuts.Only = []string{}
 	res, err = Run(context.Background(), f.opts, []string{"bash"})
 	assert.NoError(t, err)
-	assert.EqualArrays(t, res[0].Slices, []string{"all"})
+	assert.EqualArrays(t, res[0].Slices, []string{"deb"})
+	assert.That(t, !strings.Contains(strings.Join(f.cuts(t), "\n"), "bash_bins"))
 
-	// A real slice called all is refused with --all.
-	write(t, filepath.Join(f.release, "slices", "zsh.yaml"), "package: zsh\nslices:\n  all:\n    contents:\n      /usr/bin/zsh:\n")
+	// A real slice called deb is refused when the deb is listed.
+	write(t, filepath.Join(f.release, "slices", "zsh.yaml"), "package: zsh\nslices:\n  deb:\n    contents:\n      /usr/bin/zsh:\n")
 	_, err = Run(context.Background(), f.opts, []string{"zsh"})
-	assert.Error(t, err, `zsh has a slice named "all"`)
-	// Without --all it is a slice like any other.
-	f.opts.All = false
+	assert.Error(t, err, `zsh has a slice named "deb"`)
+	// Otherwise it is a slice like any other.
+	f.opts.Deb = false
 	f.opts.Cuts.Only = nil
-	write(t, filepath.Join(f.trees, "amd64", "zsh_all/usr/bin/zsh"), "a shell")
+	write(t, filepath.Join(f.trees, "amd64", "zsh_deb/usr/bin/zsh"), "a shell")
 	res, err = Run(context.Background(), f.opts, []string{"zsh"})
 	assert.NoError(t, err)
-	assert.EqualArrays(t, res[0].Slices, []string{"all"})
-	assert.EqualArrays(t, lines(res[0].Arches[0].Slices["all"]), []string{"/usr/bin/zsh: a shell"})
+	assert.EqualArrays(t, res[0].Slices, []string{"deb"})
+	assert.EqualArrays(t, lines(res[0].Arches[0].Slices["deb"]), []string{"/usr/bin/zsh: a shell"})
 }
 
-func TestRunNoSDFNeedsAll(t *testing.T) {
+func TestRunNoSDFNeedsDeb(t *testing.T) {
 	f := setup(t)
 	_, err := Run(context.Background(), f.opts, []string{"zsh"})
 	assert.Error(t, err, "zsh.yaml")

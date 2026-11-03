@@ -19,15 +19,15 @@ import (
 	"github.com/lczyk/chisel-file/internal/magic"
 )
 
-// AllSlice is the name the whole deb is listed under with Options.All.
-const AllSlice = "all"
+// DebSlice is the name the whole deb is listed under with Options.Deb.
+const DebSlice = "deb"
 
 // Options configures a run. Cuts is passed to cuts.Run with Whole,
 // Optional and Visit set here.
 type Options struct {
 	Cuts    cuts.Options
 	Backend magic.Backend
-	All     bool // list the whole deb too, as AllSlice
+	Deb     bool // list the whole deb too, as DebSlice
 }
 
 // Arch is one package on one architecture: what cuts found, and per slice
@@ -39,13 +39,13 @@ type Arch struct {
 	Version   string
 	DebArch   string
 	StandIn   string                   // the lead architecture this listing is copied from, for an arch: all package
-	Slices    map[string][]magic.Entry // slice -> its files, sorted by path; AllSlice is the whole deb
+	Slices    map[string][]magic.Entry // slice -> its files, sorted by path; DebSlice is the whole deb
 }
 
 // Package is one package across the architectures asked for.
 type Package struct {
 	Name   string
-	Slices []string // the slices listed, in file order, AllSlice first when listed
+	Slices []string // the slices listed, in file order, DebSlice first when listed
 	Arches []Arch   // in Options.Cuts.Arches order
 }
 
@@ -53,12 +53,12 @@ type key struct{ pkg, arch, slice string }
 
 // Run cuts every package on every architecture and lists each cut. It
 // fails up front as cuts.Run does, and on a package whose real slice is
-// named AllSlice when the whole deb is listed too.
+// named DebSlice when the whole deb is listed too.
 func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 	if opts.Backend == nil {
 		return nil, errors.New("no backend")
 	}
-	if opts.All {
+	if opts.Deb {
 		for _, pkg := range pkgs {
 			def, err := sdf.Read(opts.Cuts.Release, pkg)
 			if errors.Is(err, fs.ErrNotExist) {
@@ -67,8 +67,8 @@ func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 			if err != nil {
 				return nil, err
 			}
-			if def.Slice(AllSlice) != nil {
-				return nil, fmt.Errorf("%s has a slice named %q, which --all lists the whole deb as", pkg, AllSlice)
+			if def.Slice(DebSlice) != nil {
+				return nil, fmt.Errorf("%s has a slice named %q, which is what the whole deb is listed as", pkg, DebSlice)
 			}
 		}
 	}
@@ -76,8 +76,8 @@ func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 	listed := map[key][]magic.Entry{}
 	var failed error
 	co := opts.Cuts
-	co.Whole = opts.All
-	co.Optional = opts.All
+	co.Whole = opts.Deb
+	co.Optional = opts.Deb
 	co.Visit = func(c cuts.Cut) {
 		if sdf.IsIgnore(c.Slice) {
 			return
@@ -103,12 +103,12 @@ func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 	out := make([]Package, len(res))
 	for i, p := range res {
 		names := p.Slices
-		if opts.All {
-			names = append([]string{AllSlice}, names...)
+		if opts.Deb {
+			names = append([]string{DebSlice}, names...)
 		}
 		out[i] = Package{Name: p.Name, Slices: names, Arches: make([]Arch, len(p.Arches))}
 		for j, a := range p.Arches {
-			out[i].Arches[j] = assemble(p.Name, names, opts.All, a, listed)
+			out[i].Arches[j] = assemble(p.Name, names, opts.Deb, a, listed)
 		}
 	}
 	return out, nil
@@ -116,8 +116,8 @@ func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 
 // assemble is one architecture's listing: every slice's entries, from the
 // lead architecture for a stand-in, with the ignored paths dropped. With
-// all, AllSlice is the whole-deb cut; otherwise it is a real slice.
-func assemble(pkg string, names []string, all bool, c cuts.Arch, listed map[key][]magic.Entry) Arch {
+// deb, DebSlice is the whole-deb cut; otherwise it is a real slice.
+func assemble(pkg string, names []string, deb bool, c cuts.Arch, listed map[key][]magic.Entry) Arch {
 	a := Arch{Arch: c.Arch, Available: c.Available, Err: c.Err, Version: c.Version, DebArch: c.DebArch, StandIn: c.StandIn}
 	if c.Err != nil || !c.Available {
 		return a
@@ -137,7 +137,7 @@ func assemble(pkg string, names []string, all bool, c cuts.Arch, listed map[key]
 	a.Slices = map[string][]magic.Entry{}
 	for _, name := range names {
 		cut := name
-		if all && name == AllSlice {
+		if deb && name == DebSlice {
 			cut = sdf.AllSlice
 		}
 		entries := []magic.Entry{}

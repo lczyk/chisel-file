@@ -120,7 +120,7 @@ func run(t *testing.T, args ...string) report {
 func TestOpensslBothBackends(t *testing.T) {
 	requireE2E(t)
 	release := cloneRelease(t, t.TempDir())
-	args := []string{"--release", release, "--arch", "amd64,arm64", "--json", "--raw", "--ignore", "/usr/share/doc/**", "openssl", "libssl3t64"}
+	args := []string{"--release", release, "--arch", "amd64,arm64", "--slice", "all,deb", "--json", "--raw", "--ignore", "/usr/share/doc/**", "openssl", "libssl3t64"}
 
 	builtin := run(t, append([]string{"--backend", "builtin"}, args...)...)
 	if builtin.Run.Backend != "builtin" || !strings.Contains(builtin.Run.Magic, "file 5.") {

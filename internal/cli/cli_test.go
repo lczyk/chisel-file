@@ -19,14 +19,14 @@ import (
 func TestParseArgs(t *testing.T) {
 	f, pkgs, err := parseArgs([]string{"--release", "/r", "--arch", "amd64,arm64", "--arch=s390x", "-v",
 		"bash", "--slice", "bins", "--ignore", "/usr/share/doc/**,/usr/share/man/**", "--json",
-		"--all", "--raw", "--keep", "--no-group", "--backend", "builtin", "coreutils"}, io.Discard)
+		"--raw", "--keep", "--no-group", "--backend", "builtin", "coreutils"}, io.Discard)
 	assert.NoError(t, err)
 	assert.EqualArrays(t, pkgs, []string{"bash", "coreutils"})
 	assert.Equal(t, f.Release, "/r")
 	assert.EqualArrays(t, f.Arches, []string{"amd64", "arm64", "s390x"})
 	assert.EqualArrays(t, f.Slices, []string{"bins"})
 	assert.EqualArrays(t, f.Ignores, []string{"/usr/share/doc/**", "/usr/share/man/**"})
-	assert.That(t, f.JSON && f.All && f.Raw && f.Keep && f.NoGroup)
+	assert.That(t, f.JSON && f.Raw && f.Keep && f.NoGroup)
 	assert.Equal(t, f.Backend, "builtin")
 	assert.Len(t, f.Verbose, 1)
 
@@ -48,6 +48,21 @@ func TestParseArgs(t *testing.T) {
 	assert.ContainsString(t, help.String(), "--backend=<file|builtin>")
 }
 
+func TestSelectSlices(t *testing.T) {
+	deb, only := selectSlices(nil)
+	assert.That(t, deb)
+	assert.That(t, only != nil && len(only) == 0)
+	deb, only = selectSlices([]string{"all"})
+	assert.That(t, !deb)
+	assert.That(t, only == nil)
+	deb, only = selectSlices([]string{"bins", "deb", "bash_config"})
+	assert.That(t, deb)
+	assert.EqualArrays(t, only, []string{"bins", "bash_config"})
+	deb, only = selectSlices([]string{"bins", "all"})
+	assert.That(t, !deb)
+	assert.That(t, only == nil)
+}
+
 func sample() []listing.Package {
 	entry := func(path, line string) magic.Entry { return magic.Entry{Path: path, Line: line} }
 	arch := func(name, triplet, machine, loader string) listing.Arch {
@@ -55,6 +70,7 @@ func sample() []listing.Package {
 			"bins": {
 				entry("/usr/bin/openssl", "ELF 64-bit LSB pie executable, "+machine+", version 1 (SYSV), dynamically linked, interpreter "+loader+", BuildID[sha1]=ab, for GNU/Linux 3.2.0, stripped"),
 				entry("/usr/bin/c_rehash", "Perl script text executable"),
+				entry("/usr/bin/ssl", "symbolic link to openssl"),
 			},
 			"libs": {entry("/usr/lib/"+triplet+"/libssl.so.3", "ELF 64-bit LSB shared object, "+machine+", version 1 (SYSV), dynamically linked, BuildID[sha1]=cd, stripped")},
 		}}
@@ -66,9 +82,9 @@ func sample() []listing.Package {
 			arch("arm64", "aarch64-linux-gnu", "ARM aarch64", "/lib/ld-linux-aarch64.so.1"),
 			{Arch: "s390x", Err: errors.New("chisel cut ... exited 1\nboom")},
 		}},
-		{Name: "tzdata", Slices: []string{"all", "zones"}, Arches: []listing.Arch{{
+		{Name: "tzdata", Slices: []string{"deb", "zones"}, Arches: []listing.Arch{{
 			Arch: "amd64", Available: true, Version: "2026a-1", DebArch: "all",
-			Slices: map[string][]magic.Entry{"all": {entry("/usr/share/zoneinfo/UTC", "timezone data")}, "zones": {entry("/usr/share/zoneinfo/UTC", "timezone data")}},
+			Slices: map[string][]magic.Entry{"deb": {entry("/usr/share/zoneinfo/UTC", "timezone data")}, "zones": {entry("/usr/share/zoneinfo/UTC", "timezone data")}},
 		}}},
 	}
 }
@@ -79,13 +95,14 @@ func TestRenderText(t *testing.T) {
 	assert.Equal(t, out.String(), `openssl 3.0.13-1 bins [amd64, arm64]
 /usr/bin/c_rehash: Perl script text executable
 /usr/bin/openssl: ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped
+/usr/bin/ssl -> openssl
 openssl 3.0.13-1 libs [amd64, arm64]
 /usr/lib/<arch>-linux-<gnu>/libssl.so.3: ELF <arch> shared object, dynamically linked, stripped
 openssl [i386]: not available
 openssl [s390x]: error
   chisel cut ... exited 1
   boom
-tzdata 2026a-1 (all) all [amd64]
+tzdata 2026a-1 (all) deb [amd64]
 /usr/share/zoneinfo/UTC: timezone data
 tzdata 2026a-1 (all) zones [amd64]
 /usr/share/zoneinfo/UTC: timezone data
@@ -149,8 +166,9 @@ func TestRenderJSON(t *testing.T) {
 	assert.ContainsString(t, *p.Arches[3].Error, "boom")
 	assert.Len(t, p.Slices, 2)
 	assert.Equal(t, p.Slices[0].Name, "bins")
-	assert.Len(t, p.Slices[0].Files, 2)
+	assert.Len(t, p.Slices[0].Files, 3)
 	openssl := p.Slices[0].Files[1]
+	assert.Equal(t, p.Slices[0].Files[2].File, "symbolic link to openssl")
 	assert.Equal(t, openssl.Path, "/usr/bin/openssl")
 	assert.EqualArrays(t, openssl.Arches, []string{"amd64", "arm64"})
 	assert.Equal(t, openssl.File, "ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped")
@@ -219,21 +237,21 @@ func TestMainExitCodes(t *testing.T) {
 	rel := fixture(t)
 	base := []string{"--release", rel, "--arch", "amd64", "--backend", "builtin"}
 
-	code, out := captureStdout(t, func() int { return Main(append(base, "demo")) })
+	// The deb alone by default.
+	code, out := captureStdout(t, func() int { return Main(append(base, "--ignore", "/usr/share/**", "demo")) })
 	assert.Equal(t, code, 0)
-	assert.Equal(t, out, "demo bins [amd64]\n/usr/bin/demo: POSIX shell script, text executable\n")
-
-	code, out = captureStdout(t, func() int { return Main(append(base, "--all", "--ignore", "/usr/share/**", "demo")) })
-	assert.Equal(t, code, 0)
-	assert.Equal(t, out, "demo all [amd64]\n/usr/bin/demo: POSIX shell script, text executable\ndemo bins [amd64]\n/usr/bin/demo: POSIX shell script, text executable\n")
+	assert.Equal(t, out, "demo deb [amd64]\n/usr/bin/demo: POSIX shell script, text executable\n")
 
 	code, out = captureStdout(t, func() int { return Main(append(base, "--slice", "all", "demo")) })
 	assert.Equal(t, code, 0)
-	assert.ContainsString(t, out, "demo all [amd64]\n")
-	assert.That(t, !bytes.Contains([]byte(out), []byte("demo bins")))
+	assert.Equal(t, out, "demo bins [amd64]\n/usr/bin/demo: POSIX shell script, text executable\n")
+
+	code, out = captureStdout(t, func() int { return Main(append(base, "--slice", "deb,bins", "--ignore", "/usr/share/**", "demo")) })
+	assert.Equal(t, code, 0)
+	assert.Equal(t, out, "demo deb [amd64]\n/usr/bin/demo: POSIX shell script, text executable\ndemo bins [amd64]\n/usr/bin/demo: POSIX shell script, text executable\n")
 
 	t.Setenv("FAKE_FAIL", "demo_bins")
-	code, out = captureStdout(t, func() int { return Main(append(base, "demo")) })
+	code, out = captureStdout(t, func() int { return Main(append(base, "--slice", "all", "demo")) })
 	assert.Equal(t, code, 2)
 	assert.ContainsString(t, out, "demo [amd64]: error\n")
 	assert.ContainsString(t, out, "boom")
@@ -258,7 +276,7 @@ func TestMainExitCodes(t *testing.T) {
 		{"--release", rel, "--bogus", "demo"},
 		{"--release", t.TempDir(), "demo"},
 		{"--release", rel, "--slice", "nope", "demo"},
-		{"--release", rel, "--backend", "builtin", "nosuch"},
+		{"--release", rel, "--backend", "builtin", "--slice", "all", "nosuch"},
 	} {
 		code, _ := captureStdout(t, func() int { return Main(args) })
 		assert.Equal(t, code, 2, args)
