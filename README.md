@@ -14,15 +14,15 @@ when writing or reviewing a slice definition we want to know what actually lands
 ## use
 
 ```shell
-chisel-file --release ubuntu-24.04 --arch all --ignore '/usr/share/doc/**' openssl libssl3t64
+chisel-file --release ubuntu-24.04 --arch all --slice all --ignore '/usr/share/doc/**' openssl libssl3t64
 openssl 3.0.13-0ubuntu3.16 bins [amd64, arm64, armhf, i386, ppc64el, riscv64, s390x]
 /usr/bin/c_rehash: Perl script text executable
 /usr/bin/openssl: ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped
 openssl 3.0.13-0ubuntu3.16 config [amd64, arm64, armhf, i386, ppc64el, riscv64, s390x]
 /etc/ssl/openssl.cnf: text
-/usr/lib/ssl/certs: symbolic link to /etc/ssl/certs
-/usr/lib/ssl/openssl.cnf: symbolic link to /etc/ssl/openssl.cnf
-/usr/lib/ssl/private: symbolic link to /etc/ssl/private
+/usr/lib/ssl/certs -> /etc/ssl/certs
+/usr/lib/ssl/openssl.cnf -> /etc/ssl/openssl.cnf
+/usr/lib/ssl/private -> /etc/ssl/private
 ...
 libssl3t64 3.0.13-0ubuntu3.16 libs [arm64, armhf, s390x]
 /usr/lib/<arch>-linux-<gnu>/engines-3/padlock.so: ELF <arch> shared object, static-pie linked, stripped
@@ -32,7 +32,7 @@ libssl3t64 3.0.13-0ubuntu3.16 libs [amd64]
 
 every file and symlink of a slice counts, directories do not. one block per package, slice and set of architectures that agree, most architectures first. a line is `<path>: <description>`, `file`'s own format, so `cut -d: -f2- | sort | uniq -c` is the histogram. descriptions are normalised for folding: build ids, kernel versions, abi tags and text encodings go, the elf machine becomes `<arch>` (or `<other:amd64>` for a binary of the wrong architecture) and the loader `<ld>`, and paths fold like chisel-coverage's. what is kept is what a reviewer reads: the kind, the linkage, stripped or not, the script's interpreter, a symlink's target. `--raw` shows `file`'s lines as they are, `--no-group` one block per architecture.
 
-`--all` lists the whole deb as a slice called `all`, and works for a package that has no slice definition file yet. `--slice all` lists only that. `--ignore` takes chisel globs, as in chisel-coverage.
+by default the whole deb is listed, as a slice called `deb`, which needs no slice definition file. `--slice` picks what to list: `all` is every slice of the sdf, `deb` the whole deb, any other name that slice, and they combine (`--slice all,deb`, `--slice bins,deb`). `--ignore` takes chisel globs, as in chisel-coverage.
 
 `--json` is the same folding, machine-readable: per package the state of every architecture, then per slice one record per `(path, description, architectures)`; `--raw` adds every architecture's own line to each record. the `run` block names the backend, its libmagic version, chisel's version and the release.
 

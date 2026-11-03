@@ -12,7 +12,7 @@ chisel does the cutting and `file` does the judging. the tool never reads an arc
 
 for each package:
 
-1. `chisel-coverage/pkg/cuts` cuts every slice of the package's sdf on every architecture asked for, stripped the way chisel-coverage strips them: essentials, mutate scripts, `text` / `symlink` / `make` / `generate` entries gone, `copy` entries re-keyed by their source. so a listing is what the deb puts in the slice, nothing from other packages and nothing generated. `--ignore` globs become extra slices whose paths are dropped from every listing. `--all` adds the whole-deb slice, listed as `all`, and works for a package that has no sdf yet.
+1. `chisel-coverage/pkg/cuts` cuts every slice of the package's sdf on every architecture asked for, stripped the way chisel-coverage strips them: essentials, mutate scripts, `text` / `symlink` / `make` / `generate` entries gone, `copy` entries re-keyed by their source. so a listing is what the deb puts in the slice, nothing from other packages and nothing generated. `--ignore` globs become extra slices whose paths are dropped from every listing. `--slice` picks what is listed: `deb` is the whole-deb slice, listed under that name, which needs no sdf; `all` is every slice of the sdf, as in chisel-coverage; any other name is that slice; the three combine. nothing given is `deb` alone.
 2. while each cut's rootfs exists, every regular file in it goes through the backend and every symlink is read: the line for a symlink is `symbolic link to <target>` from the tool itself, not from `file`, because `file` resolves the target against the host's `/`, which is not the rootfs. directories are not listed: the implicit parents of a file are what the reader already knows.
 3. per architecture the result is, per slice, one `(path, line)` per file. an `arch: all` package is cut on the lead architecture only and probed on the rest, so its listing is copied from the lead.
 
@@ -50,11 +50,11 @@ chisel-file [flags] <package>...
                                (default: .)
       --arch=<a>[,<a>...]      architectures to list; "all" for every one
                                (default: host)
-      --slice=<s>[,<s>...]     only these slices, bare or <package>_<slice>;
-                               "all" is the whole deb (default: all slices)
+      --slice=<s>[,<s>...]     slices to list, bare or <package>_<slice>;
+                               "deb" is the whole deb, which needs no slice
+                               definition file, "all" is every slice
+                               (default: deb)
       --ignore=<glob>[,...]    leave matching paths out (chisel glob syntax)
-      --all                    list the whole deb too, as slice "all"; works
-                               without a slice definition file
       --backend=<file|builtin> what runs file: the binary on PATH, or the
                                built-in port (default: file when found)
       --raw                    show file's lines as they are, no normalising;
@@ -70,7 +70,7 @@ chisel-file [flags] <package>...
   -h, --help                   this text
 ```
 
-flags are parsed by go-flags, as in chisel and chisel-coverage. `--all` with a package that has a real slice named `all` is an error. exit codes: 0 ran fine; 2 usage error, io error, no backend, or a cut that failed; 130 interrupted. a path that `file` could not read is a line (`error: <text>`), not a failure. the text report gets the same little colour as chisel-coverage, only on a terminal with `NO_COLOR` unset.
+flags are parsed by go-flags, as in chisel and chisel-coverage. listing the deb of a package that has a real slice named `deb` is an error, and a real slice named `all` cannot be picked alone. exit codes: 0 ran fine; 2 usage error, io error, no backend, or a cut that failed; 130 interrupted. a path that `file` could not read is a line (`error: <text>`), not a failure. the text report gets the same little colour as chisel-coverage, only on a terminal with `NO_COLOR` unset.
 
 ## report
 
@@ -87,7 +87,7 @@ libc6 2.39-0ubuntu8 libs [armhf]
 bash [i386]: not available
 ```
 
-a line is `<path>: <line>`, `file`'s own format, sorted by path, so `cut -d: -f2- | sort | uniq -c` is the histogram. a block of one architecture shows its real path, and its line normalised like every other, so that what differs between two blocks is what is left after the noise. `--raw` shows raw lines, which do not fold, so it implies `--no-group` in text.
+a line is `<path>: <line>`, `file`'s own format, sorted by path, except a symlink, which is `<path> -> <target>` (the json keeps `symbolic link to <target>`), so `cut -d: -f2- | sort | uniq -c` is the histogram. a block of one architecture shows its real path, and its line normalised like every other, so that what differs between two blocks is what is left after the noise. `--raw` shows raw lines, which do not fold, so it implies `--no-group` in text.
 
 `--json` is always folded:
 
