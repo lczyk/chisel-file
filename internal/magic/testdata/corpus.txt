@@ -1,0 +1,478 @@
+amd64 /etc/ethertypes: ASCII text
+amd64 /etc/ld.so.conf.d/x86_64-linux-gnu.conf: ASCII text
+amd64 /etc/mime.types: ASCII text
+amd64 /etc/protocols: ASCII text
+amd64 /etc/python3.12/sitecustomize.py: Python script, ASCII text executable
+amd64 /etc/rpc: ASCII text
+amd64 /etc/services: ASCII text
+amd64 /etc/ssl/openssl.cnf: C source, ASCII text
+amd64 /usr/bin/c_rehash: Perl script text executable
+amd64 /usr/bin/gzip: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=e3f0a01a2371f274f76cf92f1e025960f6c31557, for GNU/Linux 3.2.0, stripped
+amd64 /usr/bin/openssl: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=8a71473f5a4f0730928c71d7f218498db2ac782b, for GNU/Linux 3.2.0, stripped
+amd64 /usr/bin/perl: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=39edac644c02bf3dcf99215562a9643cb7a33511, for GNU/Linux 3.2.0, stripped
+amd64 /usr/bin/perl5.38.2: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=39edac644c02bf3dcf99215562a9643cb7a33511, for GNU/Linux 3.2.0, stripped
+amd64 /usr/bin/python3.12: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=337d65cf00021797985cc9f77c0cc334a9fbeb38, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/python3.12/__future__.py: Python script, ASCII text executable
+amd64 /usr/lib/python3.12/_compat_pickle.py: ASCII text
+amd64 /usr/lib/python3.12/email/message.py: Python script, Unicode text, UTF-8 text executable
+amd64 /usr/lib/python3.12/email/mime/__init__.py: empty
+amd64 /usr/lib/python3.12/lib-dynload/_bz2.cpython-312-x86_64-linux-gnu.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=43cd1468819dd06046c7400f7bfd5ff05a581220, stripped
+amd64 /usr/lib/python3.12/re/_casefix.py: Unicode text, UTF-8 text
+amd64 /usr/lib/x86_64-linux-gnu/engines-3/afalg.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=ebb39a2575e30fdbf164e8f4821442a7747fcf7a, stripped
+amd64 /usr/lib/x86_64-linux-gnu/engines-3/loader_attic.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=5950a148f95c3c93bd6a9f7add108149bc8e1c60, stripped
+amd64 /usr/lib/x86_64-linux-gnu/engines-3/padlock.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=d6f11a69b98304e348659a61c7e7e5bc601b0b01, stripped
+amd64 /usr/lib/x86_64-linux-gnu/ld-linux-x86-64.so.2: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=0d77dbd4379bf0b5af3e05be7fb6af1e4cea7c96, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libanl.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=9bd1ed3f3f87f04ba710563c6182a9d61dbc8d37, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libBrokenLocale.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=3288bf9be2faf40da4a8e697df5fcec2b2ac6586, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libbz2.so.1.0.4: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=51ac1a227e1c3c5c449b6bcf8eb7323a3cbf8642, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libc_malloc_debug.so.0: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=47c50a939b3782a96a7e9ee668768b45ab87317a, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libc.so.6: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=a4a7992a8e66555c8141ab2a08a8465ff6e0ea65, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libcrypt.so.1.1.0: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=4f68861fd543a61ddbbd732908a6be38bbf34bd2, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libcrypto.so.3: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=2eb7babe130d27bd183d57702b02626012169094, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libdl.so.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=33dc200682ecde2bb9db3e93bfd95a91a6fd80a4, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libexpat.so.1.9.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=8ae4253012c773ce4f3ceb73efbd6dbd47fd9510, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libexpatw.so.1.9.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=039007b560650f1de2b7e855267a73cd3e33aade, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libgcc_s.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=58736497cba1173fec6ad05c75e996dacefd1def, stripped
+amd64 /usr/lib/x86_64-linux-gnu/liblzma.so.5.4.5: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=fd7b2b7aa549c6506c6b1a26c181d5fafbc52253, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libm.so.6: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=d53fcbff9f855463606b25cfbe2a2e10856ea3a7, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libmemusage.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=87cef3a9ab414610070b886cd0807944819d0cbd, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libmvec.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=a16921fbff339acee98c9c3054cd58654765b114, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libnsl.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=f36c115c39cd2465fda4ce54639364c48b2ddeaa, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libnss_compat.so.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=eb7ebb3d9e6a7e812903da5a3a215f56bdd09061, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libnss_dns.so.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=5283888024fddc82d9e3e3e59b786f392b39e545, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libnss_files.so.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=f1bf46ab525c086f155d41d89a18d32502eae4a9, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libnss_hesiod.so.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=de1f1a82819123947dfe9c178769f473cad5d94a, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libpcprofile.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=47a2a3aa276889894fc6446fe37661a57ef37fbd, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libpthread.so.0: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=bfb64d71f59022ae638ad01b47fd80c4416ba5e9, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libresolv.so.2: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=9e53833e9f898ff72e23f19ead5e57e88be49264, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/librt.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=b6299ac7d4a5d69c5af1c1a9e1d2d914f03fce1b, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libssl.so.3: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=e33015d57b8e510a25d82399804f4bdd8d18453e, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libthread_db.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=5f4d2328aa863001672a5b381ed18acacf9c8067, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libutil.so.1: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=cbbc10027b05cc60badc1c8aa594f2a8a51f75b1, for GNU/Linux 3.2.0, stripped
+amd64 /usr/lib/x86_64-linux-gnu/libz.so.1.3: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=2f47d490170763b8b8e0064675d234bfede6c1db, stripped
+amd64 /usr/lib/x86_64-linux-gnu/ossl-modules/legacy.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, BuildID[sha1]=16c63d868f8fee77e85334c98a073dd344a0f67d, stripped
+amd64 /usr/share/doc/base-files/copyright: ASCII text
+amd64 /usr/share/doc/gcc-14-base/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/gzip/copyright: ASCII text
+amd64 /usr/share/doc/libbz2-1.0/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/libc6/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/libcrypt1/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/libexpat1/copyright: ASCII text
+amd64 /usr/share/doc/liblzma5/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/libpython3.12-minimal/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/libssl3t64/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/media-types/copyright: ASCII text
+amd64 /usr/share/doc/netbase/copyright: ASCII text
+amd64 /usr/share/doc/perl-base/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/python3.12-minimal/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/python3.12/copyright: Unicode text, UTF-8 text
+amd64 /usr/share/doc/zlib1g/copyright: ASCII text
+arm64 /etc/ethertypes: ASCII text
+arm64 /etc/ld.so.conf.d/aarch64-linux-gnu.conf: ASCII text
+arm64 /etc/mime.types: ASCII text
+arm64 /etc/protocols: ASCII text
+arm64 /etc/python3.12/sitecustomize.py: Python script, ASCII text executable
+arm64 /etc/rpc: ASCII text
+arm64 /etc/services: ASCII text
+arm64 /etc/ssl/openssl.cnf: C source, ASCII text
+arm64 /usr/bin/c_rehash: Perl script text executable
+arm64 /usr/bin/gzip: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=0cd973b6aa2172f554b726684cccc72882981df2, for GNU/Linux 3.7.0, stripped
+arm64 /usr/bin/openssl: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=fc4adba8defee6d2be8a526e3a9adadb7f905ea0, for GNU/Linux 3.7.0, stripped
+arm64 /usr/bin/perl: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=147b70ff49fa50622eaf71e051369575b5826b09, for GNU/Linux 3.7.0, stripped
+arm64 /usr/bin/perl5.38.2: ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=147b70ff49fa50622eaf71e051369575b5826b09, for GNU/Linux 3.7.0, stripped
+arm64 /usr/bin/python3.12: ELF 64-bit LSB executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=73735111d7fc32c51940b47e0227d4dc77eea90e, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/engines-3/afalg.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=01c59e0a5b4e0740e03210b7002675c0e0ba4caf, stripped
+arm64 /usr/lib/aarch64-linux-gnu/engines-3/loader_attic.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=dac67d7b75265d6276ef308f0da8ba917862d519, stripped
+arm64 /usr/lib/aarch64-linux-gnu/engines-3/padlock.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=5c9fd6ec05d776733cd96d43ed7e8bd3cfcbb8b3, stripped
+arm64 /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=a4f6855872083bfbb0d3fa476d335f0dee573a6c, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libanl.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=b75331e4ae0a8bf49a464bf59e843d7e59bf6ed1, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libBrokenLocale.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=5f69036d75afce4130db7d707b96a558f23185d2, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libbz2.so.1.0.4: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=c9c3d37219930561c92a2652ad89d27e3f5279b6, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libc_malloc_debug.so.0: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=acefc838d91bfd9e238c6c0aac51293e66b6acb4, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libc.so.6: ELF 64-bit LSB shared object, ARM aarch64, version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=27027b96e5b8c475fc327aa445bea1c71d37b4e2, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libcrypt.so.1.1.0: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=4f8096ad7224ec30c7141ea4249e96b8ee7b61b0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libcrypto.so.3: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=ab14f1c3a2e355e43b6b53e6f69e5b5d82bf19e6, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libdl.so.2: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=9d6fc24d7860c5f90bbf25a4800559202a5ed9dd, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libexpat.so.1.9.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=2a74b3a542dbcd9cd54f8473908b57a6882ef1eb, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libexpatw.so.1.9.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=648f1733599a43d259a417fe4167eee5efb9d78f, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libgcc_s.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=d4cda90afc8eb822cc2ede7761e5a026972e4d6d, stripped
+arm64 /usr/lib/aarch64-linux-gnu/liblzma.so.5.4.5: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=658680202799936c07364f8896462c50050ba164, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libm.so.6: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=4b6fd8fef48e4ee31a7bf6559fe94a59f51eb141, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libmemusage.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=437189521cfd508f3596965f6eba9eb740c4b36d, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libmvec.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=1a22a26abe5ed38f78e363273700b1c015294e67, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libnsl.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=d1e2578df6a1e2a4e619b47b83423fd475aa7e94, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libnss_compat.so.2: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=3a8f5cb428580f5a73be00bf020a0ef33c2b87b5, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libnss_dns.so.2: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=51c84a499db5418f09f3edee3703481cbcdf12a4, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libnss_files.so.2: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=4fe6d31dd7ff3d7dee6661b631b7990d7e760f3e, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libnss_hesiod.so.2: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=0e911e60c5f3af36df05ff89d1c2dcc62fd823d0, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libpcprofile.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=04af3248664e8c7ae50cb40073784ff6132c73fd, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libpthread.so.0: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=3a45c55f72aa5947413d4584f2f5d58f389fa078, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libresolv.so.2: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=640852ee105c575c8b3aea2a184f05f64939b3a4, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/librt.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=8620dd327f7db538c165c497628848df42671801, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libssl.so.3: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=af9a5b86e0adcb55e9f5e959eb8178c71fe5ecfb, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libthread_db.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=06ec853924346db177eb854a3174a35056a543d4, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libutil.so.1: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=1b93e04d351d6cbba65e8d63f794acdbaa54ae31, for GNU/Linux 3.7.0, stripped
+arm64 /usr/lib/aarch64-linux-gnu/libz.so.1.3: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=299160556995b447230c1130e64ae287b1eec3b6, stripped
+arm64 /usr/lib/aarch64-linux-gnu/ossl-modules/legacy.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=f7cf07f2e2c256470f85c62bc8b1b3f505204efd, stripped
+arm64 /usr/lib/python3.12/__future__.py: Python script, ASCII text executable
+arm64 /usr/lib/python3.12/_compat_pickle.py: ASCII text
+arm64 /usr/lib/python3.12/email/message.py: Python script, Unicode text, UTF-8 text executable
+arm64 /usr/lib/python3.12/email/mime/__init__.py: empty
+arm64 /usr/lib/python3.12/lib-dynload/_bz2.cpython-312-aarch64-linux-gnu.so: ELF 64-bit LSB shared object, ARM aarch64, version 1 (SYSV), dynamically linked, BuildID[sha1]=23e4eb8ff876d33cca859a96a264f6197ac8a494, stripped
+arm64 /usr/lib/python3.12/re/_casefix.py: Unicode text, UTF-8 text
+arm64 /usr/share/doc/base-files/copyright: ASCII text
+arm64 /usr/share/doc/gcc-14-base/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/gzip/copyright: ASCII text
+arm64 /usr/share/doc/libbz2-1.0/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/libc6/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/libcrypt1/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/libexpat1/copyright: ASCII text
+arm64 /usr/share/doc/liblzma5/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/libpython3.12-minimal/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/libssl3t64/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/media-types/copyright: ASCII text
+arm64 /usr/share/doc/netbase/copyright: ASCII text
+arm64 /usr/share/doc/perl-base/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/python3.12-minimal/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/python3.12/copyright: Unicode text, UTF-8 text
+arm64 /usr/share/doc/zlib1g/copyright: ASCII text
+armhf /etc/ethertypes: ASCII text
+armhf /etc/ld.so.conf.d/arm-linux-gnueabihf.conf: ASCII text
+armhf /etc/mime.types: ASCII text
+armhf /etc/protocols: ASCII text
+armhf /etc/python3.12/sitecustomize.py: Python script, ASCII text executable
+armhf /etc/rpc: ASCII text
+armhf /etc/services: ASCII text
+armhf /etc/ssl/openssl.cnf: C source, ASCII text
+armhf /usr/bin/c_rehash: Perl script text executable
+armhf /usr/bin/gzip: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=7441a3de7c05bf73381dd9e3ec947f398526f0b7, for GNU/Linux 3.2.0, stripped
+armhf /usr/bin/openssl: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=df20734f8e43a35c27e7d47551b3c549af19931c, for GNU/Linux 3.2.0, stripped
+armhf /usr/bin/perl: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=4c426b35a002cca63afe630f844773beaca5ce3e, for GNU/Linux 3.2.0, stripped
+armhf /usr/bin/perl5.38.2: ELF 32-bit LSB pie executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=4c426b35a002cca63afe630f844773beaca5ce3e, for GNU/Linux 3.2.0, stripped
+armhf /usr/bin/python3.12: ELF 32-bit LSB executable, ARM, EABI5 version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=06689d6308a9943622f96779c690e2ab9368164a, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/engines-3/afalg.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=c4bc56d2ce4bc45bec37452455434cbb18336c87, stripped
+armhf /usr/lib/arm-linux-gnueabihf/engines-3/loader_attic.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=b3ac6667674b959576dfe21a5a5b795e4091c57c, stripped
+armhf /usr/lib/arm-linux-gnueabihf/engines-3/padlock.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=b8a30a605873a2518fd9f95b7d5551aba700c02f, stripped
+armhf /usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=bf03f3d7f778b9c9ca4e1fbecfa48ff30459eec7, with debug_info, not stripped
+armhf /usr/lib/arm-linux-gnueabihf/libanl.so.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=b5d5efaf670a3593d5d6a937d569022cbd95ba60, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libBrokenLocale.so.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=dbc5640f22e4d667e2e70727be680f44d7793b33, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libbz2.so.1.0.4: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=022bfeb51314e2e7d8eaf481e3020e49a31afc88, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libc_malloc_debug.so.0: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=807eb22daee99a1649d6c1096f70567fe87c9164, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libc.so.6: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-armhf.so.3, BuildID[sha1]=5617d8439e60f325a96a71e6d2e97b0ee8c6d841, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libcrypt.so.1.1.0: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=9c9916313196a0ae895a47b1c272adbb24aff683, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libcrypto.so.3: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=df8e9badd86de166469b2d54a5395cc6cf99561c, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libdl.so.2: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=eaf1f71c239595acf809fdb831d69fc7fc37cfdc, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libexpat.so.1.9.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=41cfe59e8e26a70516663c03234d687e8312d6fc, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libexpatw.so.1.9.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=c4552a36813c10926e709cb4c269979657f28996, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libgcc_s.so.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=968af28a245f080097a67da3279071684560977a, stripped
+armhf /usr/lib/arm-linux-gnueabihf/liblzma.so.5.4.5: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=cd965dcefd93004ef358240951b2eeb2ce627a34, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libm.so.6: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=6eaca8e94fa7a9cccf6877c868f21fbb131e3268, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libmemusage.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=481f71275c58c4debead212ca11e64820027fdc5, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libnsl.so.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=ba849029b64ecb03726875a150951e9c66872fc6, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libnss_compat.so.2: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=7759d04d159cf8bee7659c5a10ff9c1507c5df4a, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libnss_dns.so.2: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=6b59ec47c4b03915963c093afb791ff627ed4c93, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libnss_files.so.2: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=f5fd15f720265575d38e09e1650ed6ae60e7edd2, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libnss_hesiod.so.2: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=03a47785e9124e7039bffce617f9273bc2b1b979, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libpcprofile.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=630034db5d87bb73c8138002e385c71504bde8e8, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libpthread.so.0: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=05ad5c79ac7e5a99368184fe159046fb2c38c1d8, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libresolv.so.2: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=f7bd8fbcb63e72ba9207a1c9af7acf22afec9443, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/librt.so.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=c6787a6c2eba34be96f0ccecbe47b2223606a040, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libssl.so.3: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=7b2071461063bf2243a0fb2d21bdcded9052d7d7, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libthread_db.so.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=9ae7629f0464464edaeb09dd7607fc6b6dd17372, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libutil.so.1: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=66d50e412cd50bd4c258a5165de8e7fe6a671856, for GNU/Linux 3.2.0, stripped
+armhf /usr/lib/arm-linux-gnueabihf/libz.so.1.3: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=904e92c0440457061174d0b29c4f4ff18f3fa908, stripped
+armhf /usr/lib/arm-linux-gnueabihf/ossl-modules/legacy.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=e1be501cc02fe2b673f266be71e2c86910906d0d, stripped
+armhf /usr/lib/python3.12/__future__.py: Python script, ASCII text executable
+armhf /usr/lib/python3.12/_compat_pickle.py: ASCII text
+armhf /usr/lib/python3.12/email/message.py: Python script, Unicode text, UTF-8 text executable
+armhf /usr/lib/python3.12/email/mime/__init__.py: empty
+armhf /usr/lib/python3.12/lib-dynload/_bz2.cpython-312-arm-linux-gnueabihf.so: ELF 32-bit LSB shared object, ARM, EABI5 version 1 (SYSV), dynamically linked, BuildID[sha1]=387b3a5a1d3e9a58b4661c5f4b413af186eb453b, stripped
+armhf /usr/lib/python3.12/re/_casefix.py: Unicode text, UTF-8 text
+armhf /usr/share/doc/base-files/copyright: ASCII text
+armhf /usr/share/doc/gcc-14-base/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/gzip/copyright: ASCII text
+armhf /usr/share/doc/libbz2-1.0/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/libc6/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/libcrypt1/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/libexpat1/copyright: ASCII text
+armhf /usr/share/doc/liblzma5/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/libpython3.12-minimal/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/libssl3t64/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/media-types/copyright: ASCII text
+armhf /usr/share/doc/netbase/copyright: ASCII text
+armhf /usr/share/doc/perl-base/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/python3.12-minimal/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/python3.12/copyright: Unicode text, UTF-8 text
+armhf /usr/share/doc/zlib1g/copyright: ASCII text
+i386 /etc/ethertypes: ASCII text
+i386 /etc/ld.so.conf.d/i386-linux-gnu.conf: ASCII text
+i386 /etc/mime.types: ASCII text
+i386 /etc/protocols: ASCII text
+i386 /etc/python3.12/sitecustomize.py: Python script, ASCII text executable
+i386 /etc/rpc: ASCII text
+i386 /etc/services: ASCII text
+i386 /etc/ssl/openssl.cnf: C source, ASCII text
+i386 /usr/bin/c_rehash: Perl script text executable
+i386 /usr/bin/gzip: ELF 32-bit LSB pie executable, Intel i386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=07c9a71c64c07e901049a6b2037e5165f0636d9a, for GNU/Linux 3.2.0, stripped
+i386 /usr/bin/openssl: ELF 32-bit LSB pie executable, Intel i386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=70f1f380c7a5dc67299b96dc142063ab4dd92ce6, for GNU/Linux 3.2.0, stripped
+i386 /usr/bin/perl: ELF 32-bit LSB pie executable, Intel i386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=09c5483dc8a63bf5c1bba2a35ae246be3fc23368, for GNU/Linux 3.2.0, stripped
+i386 /usr/bin/perl5.38.2: ELF 32-bit LSB pie executable, Intel i386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=09c5483dc8a63bf5c1bba2a35ae246be3fc23368, for GNU/Linux 3.2.0, stripped
+i386 /usr/bin/python3.12: ELF 32-bit LSB executable, Intel i386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=7cb1dbbfd5a74692df25567ab4dbe9451fb73a81, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/engines-3/afalg.so: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=21c4603e3de3f5016d03732a4d4b13430ad16bdc, stripped
+i386 /usr/lib/i386-linux-gnu/engines-3/loader_attic.so: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=eacc7ba33924bb73cbad7a57f40a052abc653524, stripped
+i386 /usr/lib/i386-linux-gnu/engines-3/padlock.so: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=165117bf128c17d07844d156233dced2cd09638c, stripped
+i386 /usr/lib/i386-linux-gnu/ld-linux.so.2: ELF 32-bit LSB shared object, Intel i386, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=b2433a068fadaab6e01318e14981372cf6c2e92a, stripped
+i386 /usr/lib/i386-linux-gnu/libanl.so.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=ae1ebab0c5a315f1dd4225e5a3d4d5296a911421, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libBrokenLocale.so.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=812a41ceb3570099d3f3a851df2b6067e4ca3912, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libbz2.so.1.0.4: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=61a923f368b81fa342fc5c72468d630de928c6d4, stripped
+i386 /usr/lib/i386-linux-gnu/libc_malloc_debug.so.0: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=eaaa9769941e782ada95fb6888dac007cfc8a66e, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libc.so.6: ELF 32-bit LSB shared object, Intel i386, version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=9596d2907557f8966ee5796efe796849ce95de88, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libcrypt.so.1.1.0: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=d47fd3f9bf3f90445867cc6b2d24a2109d7bf6f2, stripped
+i386 /usr/lib/i386-linux-gnu/libcrypto.so.3: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=7097644c048b9d78105ccfc703e907692e2c9373, stripped
+i386 /usr/lib/i386-linux-gnu/libdl.so.2: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=f25062ca7dfe744b20f3fcc5bb8661d182d4c4c7, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libexpat.so.1.9.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=db49177c79d557c164cffca35e18c6275f4cee29, stripped
+i386 /usr/lib/i386-linux-gnu/libexpatw.so.1.9.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=bf6a992ee9620f26abe55ae16e733c26af3c8ff3, stripped
+i386 /usr/lib/i386-linux-gnu/libgcc_s.so.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=2bcc2874ce781af4e7f29a905ba9b26997bac517, stripped
+i386 /usr/lib/i386-linux-gnu/liblzma.so.5.4.5: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=53f73dcd42a1b655a26ef9afc6ccc17736b74ac2, stripped
+i386 /usr/lib/i386-linux-gnu/libm.so.6: ELF 32-bit LSB shared object, Intel i386, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=4a8f095f4677c8c23abda7e0e22b4846455d1fdf, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libmemusage.so: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=0bafd223ec9fe248e45dd013f521fb5dbc80e3a8, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libnsl.so.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=c97ba90fd9c1022fb6929d2d83ea30602790c738, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libnss_compat.so.2: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=d5d0d2aeb01afce892fb2d57ed9598795ff5d3ba, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libnss_dns.so.2: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=aa4b0b1a6eb931e8d6a5024dcd84a9a5c9a591b0, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libnss_files.so.2: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=5800656189b934e458937eb8796b8bbed523a90d, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libnss_hesiod.so.2: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=b4a1a65078f7b890c9ed3bf5bea594e4521e4819, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libpcprofile.so: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=65e26c3b691375d79bebaf09e40fe61238b3774d, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libpthread.so.0: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=b3aaca168ba0511fd11f5fe613979eee9307ae83, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libresolv.so.2: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=4f9a5fd91c6011d66e5a2283c09465ecdfc8dbea, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/librt.so.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=64e2ed423a864b4e2d520642e730e4dd2e99ce38, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libssl.so.3: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=2b750589aedd6762eaec55b45d3cee09a1c26d73, stripped
+i386 /usr/lib/i386-linux-gnu/libthread_db.so.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=08c937af3a4b6d620915efff00e7a2b66741a777, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libutil.so.1: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=7d9cf345891ed17131961e93d3bad2a54d36e3ef, for GNU/Linux 3.2.0, stripped
+i386 /usr/lib/i386-linux-gnu/libz.so.1.3: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=406f7fd887b69f7f313c3a40f4ff6dd6f2390c05, stripped
+i386 /usr/lib/i386-linux-gnu/ossl-modules/legacy.so: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=9e29ebb88417fd9fa247e3ef6aa18e8b4dff2169, stripped
+i386 /usr/lib/python3.12/__future__.py: Python script, ASCII text executable
+i386 /usr/lib/python3.12/_compat_pickle.py: ASCII text
+i386 /usr/lib/python3.12/email/message.py: Python script, Unicode text, UTF-8 text executable
+i386 /usr/lib/python3.12/email/mime/__init__.py: empty
+i386 /usr/lib/python3.12/lib-dynload/_bz2.cpython-312-i386-linux-gnu.so: ELF 32-bit LSB shared object, Intel i386, version 1 (SYSV), dynamically linked, BuildID[sha1]=19eb10e02393b3b5ce63bd9670158d52cdfa3bc0, stripped
+i386 /usr/lib/python3.12/re/_casefix.py: Unicode text, UTF-8 text
+i386 /usr/share/doc/base-files/copyright: ASCII text
+i386 /usr/share/doc/gcc-14-base/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/gzip/copyright: ASCII text
+i386 /usr/share/doc/libbz2-1.0/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/libc6/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/libcrypt1/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/libexpat1/copyright: ASCII text
+i386 /usr/share/doc/liblzma5/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/libpython3.12-minimal/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/libssl3t64/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/media-types/copyright: ASCII text
+i386 /usr/share/doc/netbase/copyright: ASCII text
+i386 /usr/share/doc/perl-base/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/python3.12-minimal/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/python3.12/copyright: Unicode text, UTF-8 text
+i386 /usr/share/doc/zlib1g/copyright: ASCII text
+ppc64el /etc/ethertypes: ASCII text
+ppc64el /etc/ld.so.conf.d/powerpc64le-linux-gnu.conf: ASCII text
+ppc64el /etc/mime.types: ASCII text
+ppc64el /etc/protocols: ASCII text
+ppc64el /etc/python3.12/sitecustomize.py: Python script, ASCII text executable
+ppc64el /etc/rpc: ASCII text
+ppc64el /etc/services: ASCII text
+ppc64el /etc/ssl/openssl.cnf: C source, ASCII text
+ppc64el /usr/bin/c_rehash: Perl script text executable
+ppc64el /usr/bin/gzip: ELF 64-bit LSB pie executable, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, interpreter /lib64/ld64.so.2, BuildID[sha1]=ceb9e0f9ae9c746bcd2d715bdbe22848effb5c88, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/bin/openssl: ELF 64-bit LSB pie executable, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, interpreter /lib64/ld64.so.2, BuildID[sha1]=65f8830fe06635571a99ae250cdb08c7b612199a, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/bin/perl: ELF 64-bit LSB pie executable, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, interpreter /lib64/ld64.so.2, BuildID[sha1]=73b9c6e91f882f769bd806569fa4f8040531b9a6, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/bin/perl5.38.2: ELF 64-bit LSB pie executable, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, interpreter /lib64/ld64.so.2, BuildID[sha1]=73b9c6e91f882f769bd806569fa4f8040531b9a6, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/bin/python3.12: ELF 64-bit LSB executable, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, interpreter /lib64/ld64.so.2, BuildID[sha1]=6d30d79c6542bae66e91c7a6691d2e0f4ab790a8, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/engines-3/afalg.so: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=92b2f6bd0e3027abb36fecc9eea99723e074ce4c, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/engines-3/loader_attic.so: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=5da0ecb28cc14715273caf5faa2222ed65c60941, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/engines-3/padlock.so: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=0a6ef8ea380aecaeb00bd06e299d4e2f68dc73fa, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/ld64.so.2: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=6a07e4fa5fe1d7422413717eef8ea33a4f2576b7, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libanl.so.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=36034c1253fac7433b8035fc9eae4097019ee75f, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libBrokenLocale.so.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=fc49b998d9f4d3538e81fa4cfb5d277553c7d80f, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libbz2.so.1.0.4: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=f05e193840822405b4563c5607b76156cf389666, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libc_malloc_debug.so.0: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=a5f9faa4f2cab22019d7b8316d2eafe40f647acc, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libc.so.6: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (GNU/Linux), dynamically linked, interpreter /lib64/ld64.so.2, BuildID[sha1]=4ebaf8049b39c2fbe3cbcbb6fe6d831b317fa5f1, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libcrypt.so.1.1.0: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=5c44176ab74b624f703fdfc60052060d53ab2fd0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libcrypto.so.3: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=0920f84ca8396669f8640bbad6fbb3ed33260687, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libdl.so.2: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=30003868fe2e9af66a11a2cf636126fb171c3485, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libexpat.so.1.9.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=a056e4456a5b7f3d6e98d117082033bcb4703034, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libexpatw.so.1.9.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=2712f4f3fcf10817e04d16d88c97311146366c4a, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libgcc_s.so.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=47ca170aa4adb1353512b6c8fee0b83e81bdde37, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/liblzma.so.5.4.5: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=2de50221e536106240d9972cf253b96a93829dc9, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libm.so.6: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=2af1d0b5c40638e04a9b718192170e3b8d40db01, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libmemusage.so: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=00488a178b088a0aa044937918ba62ff2535bac0, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libnsl.so.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=69789baf6e064c112d80ff6bdcda19c776f02341, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libnss_compat.so.2: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=4bf26a54b771a9caf31041631c87fad2b3fe933d, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libnss_dns.so.2: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=5f280fb58a1d493e14a0502235d3231eaffa1fc5, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libnss_files.so.2: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=8f152a8686a285c88d6d3fe9c27e1a40c57ae2cc, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libnss_hesiod.so.2: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=43a688e137a21668825c0a1670df9cbb7007ba98, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libpcprofile.so: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=df6a3aa6adfbd6273f83c70703fe5c3ea7bd89d3, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libpthread.so.0: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=c4943bc12c201819ab3418d1837ef85b3afb4cf7, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libresolv.so.2: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=ee35e97eee1cfd52cbaba42cd46ce6d178adc5cd, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/librt.so.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=0e9e74ce768cc3681a6609074353aac79a093c59, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libssl.so.3: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=b7e41b056f849ebe2ea490c46c044eabd5ba4287, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libthread_db.so.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=4dd0a86d05568b9cee16901dfd9039e4ad2a8285, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libutil.so.1: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=3c3fef8e30ac9dd647b5359476a53cb6634fb109, for GNU/Linux 3.10.0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/libz.so.1.3: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=d3a7ae01f179fe65c5e1aa52f0d2b48c5a5e08a0, stripped
+ppc64el /usr/lib/powerpc64le-linux-gnu/ossl-modules/legacy.so: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=aeab4e7d12b95bb5fb478721df52c0372678de8a, stripped
+ppc64el /usr/lib/python3.12/__future__.py: Python script, ASCII text executable
+ppc64el /usr/lib/python3.12/_compat_pickle.py: ASCII text
+ppc64el /usr/lib/python3.12/email/message.py: Python script, Unicode text, UTF-8 text executable
+ppc64el /usr/lib/python3.12/email/mime/__init__.py: empty
+ppc64el /usr/lib/python3.12/lib-dynload/_bz2.cpython-312-powerpc64le-linux-gnu.so: ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, OpenPOWER ELF V2 ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=dd783698332f442c34c44ac917d7829ea8b75e9e, stripped
+ppc64el /usr/lib/python3.12/re/_casefix.py: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/base-files/copyright: ASCII text
+ppc64el /usr/share/doc/gcc-14-base/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/gzip/copyright: ASCII text
+ppc64el /usr/share/doc/libbz2-1.0/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/libc6/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/libcrypt1/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/libexpat1/copyright: ASCII text
+ppc64el /usr/share/doc/liblzma5/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/libpython3.12-minimal/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/libssl3t64/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/media-types/copyright: ASCII text
+ppc64el /usr/share/doc/netbase/copyright: ASCII text
+ppc64el /usr/share/doc/perl-base/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/python3.12-minimal/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/python3.12/copyright: Unicode text, UTF-8 text
+ppc64el /usr/share/doc/zlib1g/copyright: ASCII text
+riscv64 /etc/ethertypes: ASCII text
+riscv64 /etc/ld.so.conf.d/riscv64-linux-gnu.conf: ASCII text
+riscv64 /etc/mime.types: ASCII text
+riscv64 /etc/protocols: ASCII text
+riscv64 /etc/python3.12/sitecustomize.py: Python script, ASCII text executable
+riscv64 /etc/rpc: ASCII text
+riscv64 /etc/services: ASCII text
+riscv64 /etc/ssl/openssl.cnf: C source, ASCII text
+riscv64 /usr/bin/c_rehash: Perl script text executable
+riscv64 /usr/bin/gzip: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=01d4f83ce85fda7088e8382f891678f60f9d5224, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/bin/openssl: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=197947632a4244b57871aa31b2bb7747b3a3b799, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/bin/perl: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=71b64bda6680120d53837dd96fc13a0eade2d6b7, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/bin/perl5.38.2: ELF 64-bit LSB pie executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=71b64bda6680120d53837dd96fc13a0eade2d6b7, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/bin/python3.12: ELF 64-bit LSB executable, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=8b40d89c409acdcebdc188f6dfa1b4f503fe30f7, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/python3.12/__future__.py: Python script, ASCII text executable
+riscv64 /usr/lib/python3.12/_compat_pickle.py: ASCII text
+riscv64 /usr/lib/python3.12/email/message.py: Python script, Unicode text, UTF-8 text executable
+riscv64 /usr/lib/python3.12/email/mime/__init__.py: empty
+riscv64 /usr/lib/python3.12/lib-dynload/_bz2.cpython-312-riscv64-linux-gnu.so: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=062e144569617b0628a4ff6b1fae0382c199b283, stripped
+riscv64 /usr/lib/python3.12/re/_casefix.py: Unicode text, UTF-8 text
+riscv64 /usr/lib/riscv64-linux-gnu/engines-3/afalg.so: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=ba87de6ab35c433b25502f7b7102c680c3d2e252, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/engines-3/loader_attic.so: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=cebfad429f58bbf0d3101a0d621248115018cc21, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/engines-3/padlock.so: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=4be8fe9f35b1af85a403ec04ad0c463b6964ad39, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/ld-linux-riscv64-lp64d.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=9be25fd730f58fe87b38fe0b6479a412919ee420, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libanl.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=7ff85a261b48751bd0c88fd082321e71f49a2595, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libBrokenLocale.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=15804297544fe8026521d9b7369798bb3c2d2c42, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libbz2.so.1.0.4: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=02d90821171d1b0082dda3b3e08f95aa50aa06ee, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libc_malloc_debug.so.0: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=3a0bdaeb9ffb8b12cbb7586792045810697a4653, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libc.so.6: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld-linux-riscv64-lp64d.so.1, BuildID[sha1]=f761ff6fbd3aae208615a11b74b486104025c127, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libcrypt.so.1.1.0: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=33e45316039d25d328a772df14043bd238d092a8, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libcrypto.so.3: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=7b5ce8ab8e5aca496576d58bd18065aa5e15d86a, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libdl.so.2: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=644a465419076fc95706d484fbf458e2d5b5fc70, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libexpat.so.1.9.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=2d07cb09c854b37c5c1da777bc89518694c466cd, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libexpatw.so.1.9.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=2dc4c38e4e4ae52e6f9bdac9265be3c92df2e33b, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libgcc_s.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=08689d9177fc11f787e04008d2599b75a555e363, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/liblzma.so.5.4.5: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=c3c5a4fdb6a1aa3ba4f7c75efa7c0e7f02f8fe5e, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libm.so.6: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=ccc87464709aa7a890e52d4854df21559ec0a3e5, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libmemusage.so: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=d4fe62f5ff951aad438ee24e4b9125b90453e549, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libnsl.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=92680c0b1579fcf75c44dd1ef060633a48164db8, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libnss_compat.so.2: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=10a0581c57ab204f586bdf2c39c6e338141c08ee, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libnss_dns.so.2: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=6896ce15740706bc405ceaaf2073b191c232b7ea, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libnss_files.so.2: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=c676006bcedcc0645e1fe22aa0bce256bcc38057, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libnss_hesiod.so.2: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=433cf8417f273dff9b9f83607455a3a7e89480e3, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libpcprofile.so: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=1de218d0c6fa3bc73925a2ad53db254627a55a00, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libpthread.so.0: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=05913613bad51941804ccba8c2832c66735b779d, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libresolv.so.2: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=c6f2450dc83fc4494794a3a8da21bf7f926b55b3, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/librt.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=739bf0ec0bca0d272d6dc7e554b0310159fd34ae, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libssl.so.3: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=e03b67766754f7ab2a941ba9706b9e8a33e44dcb, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libthread_db.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=99f9f2964f29154c783f438bfd4e2b2966687762, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libutil.so.1: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=d7a8da5b39eedb8b58df5c9ef45ffa75607a371b, for GNU/Linux 4.15.0, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/libz.so.1.3: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=375546b68cfa54b601ff9d21b262bbad3f4b3209, stripped
+riscv64 /usr/lib/riscv64-linux-gnu/ossl-modules/legacy.so: ELF 64-bit LSB shared object, UCB RISC-V, RVC, double-float ABI, version 1 (SYSV), dynamically linked, BuildID[sha1]=523520c14abbe8a198f1ab47d0a6fea242b13b04, stripped
+riscv64 /usr/share/doc/base-files/copyright: ASCII text
+riscv64 /usr/share/doc/gcc-14-base/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/gzip/copyright: ASCII text
+riscv64 /usr/share/doc/libbz2-1.0/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/libc6/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/libcrypt1/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/libexpat1/copyright: ASCII text
+riscv64 /usr/share/doc/liblzma5/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/libpython3.12-minimal/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/libssl3t64/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/media-types/copyright: ASCII text
+riscv64 /usr/share/doc/netbase/copyright: ASCII text
+riscv64 /usr/share/doc/perl-base/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/python3.12-minimal/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/python3.12/copyright: Unicode text, UTF-8 text
+riscv64 /usr/share/doc/zlib1g/copyright: ASCII text
+s390x /etc/ethertypes: ASCII text
+s390x /etc/ld.so.conf.d/s390x-linux-gnu.conf: ASCII text
+s390x /etc/mime.types: ASCII text
+s390x /etc/protocols: ASCII text
+s390x /etc/python3.12/sitecustomize.py: Python script, ASCII text executable
+s390x /etc/rpc: ASCII text
+s390x /etc/services: ASCII text
+s390x /etc/ssl/openssl.cnf: C source, ASCII text
+s390x /usr/bin/c_rehash: Perl script text executable
+s390x /usr/bin/gzip: ELF 64-bit MSB pie executable, IBM S/390, version 1 (SYSV), dynamically linked, interpreter /lib/ld64.so.1, BuildID[sha1]=64d1b309785ad920f6e8e00089890c25c126ea29, for GNU/Linux 3.2.0, stripped
+s390x /usr/bin/openssl: ELF 64-bit MSB pie executable, IBM S/390, version 1 (SYSV), dynamically linked, interpreter /lib/ld64.so.1, BuildID[sha1]=648311fd1fb6f8241cda403bfa74df992547c3f1, for GNU/Linux 3.2.0, stripped
+s390x /usr/bin/perl: ELF 64-bit MSB pie executable, IBM S/390, version 1 (SYSV), dynamically linked, interpreter /lib/ld64.so.1, BuildID[sha1]=cd92b5b23a2be89d90941beb4f7ce8c4896a0a59, for GNU/Linux 3.2.0, stripped
+s390x /usr/bin/perl5.38.2: ELF 64-bit MSB pie executable, IBM S/390, version 1 (SYSV), dynamically linked, interpreter /lib/ld64.so.1, BuildID[sha1]=cd92b5b23a2be89d90941beb4f7ce8c4896a0a59, for GNU/Linux 3.2.0, stripped
+s390x /usr/bin/python3.12: ELF 64-bit MSB executable, IBM S/390, version 1 (SYSV), dynamically linked, interpreter /lib/ld64.so.1, BuildID[sha1]=d0ff54bdc27c9bb4447d39e65b74faa8055aaad6, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/python3.12/__future__.py: Python script, ASCII text executable
+s390x /usr/lib/python3.12/_compat_pickle.py: ASCII text
+s390x /usr/lib/python3.12/email/message.py: Python script, Unicode text, UTF-8 text executable
+s390x /usr/lib/python3.12/email/mime/__init__.py: empty
+s390x /usr/lib/python3.12/lib-dynload/_bz2.cpython-312-s390x-linux-gnu.so: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=455c65efb217797c00d25fd8de38bb11dea6708d, stripped
+s390x /usr/lib/python3.12/re/_casefix.py: Unicode text, UTF-8 text
+s390x /usr/lib/s390x-linux-gnu/engines-3/afalg.so: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=3286f0fecfc8599d3c624fa12af6b571a8e8bd76, stripped
+s390x /usr/lib/s390x-linux-gnu/engines-3/loader_attic.so: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=f38fa708f969d6af3a639a2d9a50349d76d1847e, stripped
+s390x /usr/lib/s390x-linux-gnu/engines-3/padlock.so: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=578d1d51efc59e8f3b0b717c0681270f185bec6b, stripped
+s390x /usr/lib/s390x-linux-gnu/ld64.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=8185ae9f2e629eed0a0c847da280f8e7abb3c4fe, stripped
+s390x /usr/lib/s390x-linux-gnu/libanl.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=97d480638244d3bf9bb693ecfc9698280421fca5, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libBrokenLocale.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=94b21c0e11827f8cb40476de2b35ed708749aa07, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libbz2.so.1.0.4: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=4f57cc128cd832fb5f2d3e5c464a604311fdb13a, stripped
+s390x /usr/lib/s390x-linux-gnu/libc_malloc_debug.so.0: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=9a07d1a21f132b78925a76691912c3abfd481616, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libc.so.6: ELF 64-bit MSB shared object, IBM S/390, version 1 (GNU/Linux), dynamically linked, interpreter /lib/ld64.so.1, BuildID[sha1]=e2883e499d6ea36f94fa692141a664d0abb384fb, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libcrypt.so.1.1.0: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=97fc0315656e14a40d29e38d6d86f7778db9986c, stripped
+s390x /usr/lib/s390x-linux-gnu/libcrypto.so.3: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=5325d6ff505f16d16170761fb618c4760be6685c, stripped
+s390x /usr/lib/s390x-linux-gnu/libdl.so.2: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=06b83b5a71d4a11d32346061f2588fec306ae93f, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libexpat.so.1.9.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=5b3ff6c2b428f7ca6ab659fc3525172b3a33f7ce, stripped
+s390x /usr/lib/s390x-linux-gnu/libexpatw.so.1.9.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=9d4325284ce9f7f3e6440fc9f48bde151b04fe91, stripped
+s390x /usr/lib/s390x-linux-gnu/libgcc_s.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=851ea07a5acd73bb78e8ff27907b8941d6149358, stripped
+s390x /usr/lib/s390x-linux-gnu/liblzma.so.5.4.5: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=c8994f35d84f63d6c18242501cea91c946cb2291, stripped
+s390x /usr/lib/s390x-linux-gnu/libm.so.6: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=fb038ba2f2847192d67134ba00d38ae241566e3f, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libmemusage.so: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=f36e6ee5d44561720b585d6200f486b19325d344, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libnsl.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=8c414d0373358c7e81bf4e485d4089202b1ab460, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libnss_compat.so.2: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=cc6f24362ddb2b089dd9280e1e9b20355d1957ae, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libnss_dns.so.2: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=da69219f939834853d1c0e32356518218441eaa7, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libnss_files.so.2: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=a5345bcbf6adbacdeda688d619f3f0a5ebc17c16, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libnss_hesiod.so.2: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=0f118c07c6f44959201505adeb617533ae82b716, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libpcprofile.so: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=bb051efc8b504d5d7420eb2ca37fe370e4889f71, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libpthread.so.0: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=c3e84ed91f7def21f506164a48751213df4b31c1, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libresolv.so.2: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=e6ed87a9cfe2a450255e8c78149d665da0a347fa, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/librt.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=a58a24e39b73dffbbdd635a46fe33feb3f78f9ce, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libssl.so.3: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=ad585f0bd832b93864658dbd5ef034fb1c7ea862, stripped
+s390x /usr/lib/s390x-linux-gnu/libthread_db.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=fc0e6a28161d7e0234cc8c3d0c61a8ecaac3606a, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libutil.so.1: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=de8307e98bb8a086c786b3e5147009a1c49804e3, for GNU/Linux 3.2.0, stripped
+s390x /usr/lib/s390x-linux-gnu/libz.so.1.3: ELF 64-bit MSB shared object, IBM S/390, version 1 (GNU/Linux), dynamically linked, BuildID[sha1]=148258801d8f20f7244393ee305655e6fae1bbda, stripped
+s390x /usr/lib/s390x-linux-gnu/ossl-modules/legacy.so: ELF 64-bit MSB shared object, IBM S/390, version 1 (SYSV), dynamically linked, BuildID[sha1]=944f66306dd4070486e763f30c3319b0686ff8c1, stripped
+s390x /usr/share/doc/base-files/copyright: ASCII text
+s390x /usr/share/doc/gcc-14-base/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/gzip/copyright: ASCII text
+s390x /usr/share/doc/libbz2-1.0/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/libc6/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/libcrypt1/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/libexpat1/copyright: ASCII text
+s390x /usr/share/doc/liblzma5/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/libpython3.12-minimal/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/libssl3t64/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/media-types/copyright: ASCII text
+s390x /usr/share/doc/netbase/copyright: ASCII text
+s390x /usr/share/doc/perl-base/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/python3.12-minimal/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/python3.12/copyright: Unicode text, UTF-8 text
+s390x /usr/share/doc/zlib1g/copyright: ASCII text
