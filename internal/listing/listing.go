@@ -22,6 +22,10 @@ import (
 // DebSlice is the name the whole deb is listed under with Options.Deb.
 const DebSlice = "deb"
 
+// prefix names of the run's own slices in the synthesised file and
+// the verbose lines: file-all, file-probe, file-ignore-<n>.
+const prefix sdf.Names = "file"
+
 // Options configures a run. Cuts is passed to cuts.Run with Whole,
 // Optional and Visit set here.
 type Options struct {
@@ -78,8 +82,9 @@ func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 	co := opts.Cuts
 	co.Whole = opts.Deb
 	co.Optional = opts.Deb
+	co.Prefix = string(prefix)
 	co.Visit = func(c cuts.Cut) {
-		if sdf.IsIgnore(c.Slice) {
+		if prefix.IsIgnore(c.Slice) {
 			return
 		}
 		entries, err := magic.List(opts.Backend, c.Root, c.Result.Paths)
@@ -128,7 +133,7 @@ func assemble(pkg string, names []string, deb bool, c cuts.Arch, listed map[key]
 	}
 	ignored := map[string]bool{}
 	for name, paths := range c.Slices {
-		if sdf.IsIgnore(name) {
+		if prefix.IsIgnore(name) {
 			for _, p := range paths {
 				ignored[p] = true
 			}
@@ -138,7 +143,7 @@ func assemble(pkg string, names []string, deb bool, c cuts.Arch, listed map[key]
 	for _, name := range names {
 		cut := name
 		if deb && name == DebSlice {
-			cut = sdf.AllSlice
+			cut = prefix.All()
 		}
 		entries := []magic.Entry{}
 		for _, e := range listed[key{pkg, from, cut}] {

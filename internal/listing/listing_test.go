@@ -16,7 +16,7 @@ import (
 )
 
 // fakeChisel fills --root from $FAKE_TREES/<arch>/<slice>/. A package with no
-// <arch>/<pkg>_cov-all tree is not available on that arch; a slice listed in
+// <arch>/<pkg>_file-all tree is not available on that arch; a slice listed in
 // $FAKE_FAIL fails; a slice listed in $FAKE_NOCONTENT fails the way chisel
 // fails a glob matching nothing; a <arch>/<pkg>.version file is logged the way
 // chisel logs a fetch, and a <arch>/<pkg>.all marker makes the fetched deb an
@@ -34,7 +34,7 @@ pkg="${slice%%_*}"
 [ -n "$FAKE_LOG" ] && printf '%s %s\n' "$arch" "$slice" >> "$FAKE_LOG"
 case " $FAKE_FAIL " in *" $slice "*) echo "boom" >&2; exit 1;; esac
 case " $FAKE_NOCONTENT " in *" $slice "*) echo "error: cannot extract from package \"$pkg\": no content at /nope/**" >&2; exit 1;; esac
-if [ ! -d "$FAKE_TREES/$arch/${pkg}_cov-all" ]; then
+if [ ! -d "$FAKE_TREES/$arch/${pkg}_file-all" ]; then
   echo "error: cannot find package \"$pkg\" in archive(s)" >&2
   exit 1
 fi
@@ -111,7 +111,7 @@ func setup(t *testing.T) *fixture {
 		"arm64": "ELF 64-bit LSB pie executable, ARM aarch64, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux-aarch64.so.1, BuildID[sha1]=bb, for GNU/Linux 3.7.0, stripped",
 	}
 	for arch, triplet := range map[string]string{"amd64": "x86_64-linux-gnu", "arm64": "aarch64-linux-gnu"} {
-		all := filepath.Join(f.trees, arch, "bash_cov-all")
+		all := filepath.Join(f.trees, arch, "bash_file-all")
 		write(t, filepath.Join(all, "usr/bin/bash"), elf[arch])
 		write(t, filepath.Join(all, "usr/lib", triplet, "bash/loadables.so"), "ELF 64-bit LSB shared object, "+map[string]string{"amd64": "x86-64", "arm64": "ARM aarch64"}[arch]+", version 1 (SYSV), dynamically linked, stripped")
 		write(t, filepath.Join(all, "usr/share/man/man1/bash.1.gz"), "gzip compressed data")
@@ -122,9 +122,9 @@ func setup(t *testing.T) *fixture {
 		write(t, filepath.Join(bins, "usr/lib", triplet, "bash/loadables.so"), "ELF 64-bit LSB shared object, "+map[string]string{"amd64": "x86-64", "arm64": "ARM aarch64"}[arch]+", version 1 (SYSV), dynamically linked, stripped")
 		assert.NoError(t, os.Symlink("bash", filepath.Join(bins, "usr/bin/sh")))
 		write(t, filepath.Join(f.trees, arch, "bash_config/etc/skel/.bashrc"), "ASCII text")
-		write(t, filepath.Join(f.trees, arch, "bash_cov-ignore-0/usr/share/man/man1/bash.1.gz"), "gzip compressed data")
+		write(t, filepath.Join(f.trees, arch, "bash_file-ignore-0/usr/share/man/man1/bash.1.gz"), "gzip compressed data")
 		write(t, filepath.Join(f.trees, arch, "bash.version"), "5.2-1")
-		write(t, filepath.Join(f.trees, arch, "dash_cov-all/usr/bin/dash"), "a script")
+		write(t, filepath.Join(f.trees, arch, "dash_file-all/usr/bin/dash"), "a script")
 		write(t, filepath.Join(f.trees, arch, "dash_bins/usr/bin/dash"), "a script")
 		write(t, filepath.Join(f.trees, arch, "dash.version"), "0.5")
 	}
@@ -190,9 +190,9 @@ func TestRunLists(t *testing.T) {
 	assert.Nil(t, p.Arches[2].Slices)
 	// The probe leads, the whole deb is never cut, ignores are.
 	cuts := f.cuts(t)
-	assert.EqualArrays(t, cuts[:1], []string{"amd64 bash_cov-probe"})
-	assert.That(t, !strings.Contains(strings.Join(cuts, "\n"), "cov-all"))
-	assert.That(t, strings.Contains(strings.Join(cuts, "\n"), "amd64 bash_cov-ignore-0"))
+	assert.EqualArrays(t, cuts[:1], []string{"amd64 bash_file-probe"})
+	assert.That(t, !strings.Contains(strings.Join(cuts, "\n"), "file-all"))
+	assert.That(t, strings.Contains(strings.Join(cuts, "\n"), "amd64 bash_file-ignore-0"))
 
 	groups := Groups(p)
 	assert.Len(t, groups, 4)
@@ -231,7 +231,7 @@ func TestRunDeb(t *testing.T) {
 	f.opts.Deb = true
 	f.opts.Cuts.Arches = []string{"amd64"}
 	f.opts.Cuts.Ignores = []string{"/usr/share/**"}
-	write(t, filepath.Join(f.trees, "amd64", "zsh_cov-all/usr/bin/zsh"), "a shell")
+	write(t, filepath.Join(f.trees, "amd64", "zsh_file-all/usr/bin/zsh"), "a shell")
 	res, err := Run(context.Background(), f.opts, []string{"bash", "zsh"})
 	assert.NoError(t, err)
 	assert.EqualArrays(t, res[0].Slices, []string{"deb", "config", "bins", "scripts"})
@@ -245,7 +245,7 @@ func TestRunDeb(t *testing.T) {
 	assert.EqualArrays(t, res[1].Slices, []string{"deb"})
 	assert.That(t, res[1].Arches[0].Available)
 	assert.EqualArrays(t, lines(res[1].Arches[0].Slices["deb"]), []string{"/usr/bin/zsh: a shell"})
-	assert.Equal(t, f.cuts(t)[0], "amd64 bash_cov-all")
+	assert.Equal(t, f.cuts(t)[0], "amd64 bash_file-all")
 
 	// The deb alone, which is the default.
 	assert.NoError(t, os.Remove(f.log))

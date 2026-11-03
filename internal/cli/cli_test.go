@@ -197,10 +197,10 @@ func fixture(t *testing.T) string {
 	assert.NoError(t, os.WriteFile(filepath.Join(rel, "slices", "demo.yaml"),
 		[]byte("package: demo\nslices:\n  bins:\n    contents:\n      /usr/bin/demo:\n"), 0644))
 	for p, content := range map[string]string{
-		"demo_cov-all/usr/bin/demo":                   "#!/bin/sh\n",
-		"demo_cov-all/usr/share/doc/demo/README":      "hello\n",
-		"demo_bins/usr/bin/demo":                      "#!/bin/sh\n",
-		"demo_cov-ignore-0/usr/share/doc/demo/README": "hello\n",
+		"demo_file-all/usr/bin/demo":                   "#!/bin/sh\n",
+		"demo_file-all/usr/share/doc/demo/README":      "hello\n",
+		"demo_bins/usr/bin/demo":                       "#!/bin/sh\n",
+		"demo_file-ignore-0/usr/share/doc/demo/README": "hello\n",
 	} {
 		assert.NoError(t, os.MkdirAll(filepath.Dir(filepath.Join(tmp, "trees", p)), 0755))
 		assert.NoError(t, os.WriteFile(filepath.Join(tmp, "trees", p), []byte(content), 0755))
