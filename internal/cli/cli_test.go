@@ -94,10 +94,10 @@ func TestRenderText(t *testing.T) {
 	renderText(&out, sample(), true, style{})
 	assert.Equal(t, out.String(), `openssl 3.0.13-1 bins [amd64, arm64]
 /usr/bin/c_rehash: Perl script text executable
-/usr/bin/openssl: ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped
+/usr/bin/openssl: ELF <arch> pie, dynamic, <ld>, stripped
 /usr/bin/ssl -> openssl
 openssl 3.0.13-1 libs [amd64, arm64]
-/usr/lib/<arch>-linux-<gnu>/libssl.so.3: ELF <arch> shared object, dynamically linked, stripped
+/usr/lib/<arch>-linux-<gnu>/libssl.so.3: ELF <arch> lib, dynamic, stripped
 openssl [i386]: not available
 openssl [s390x]: error
   chisel cut ... exited 1
@@ -171,7 +171,7 @@ func TestRenderJSON(t *testing.T) {
 	assert.Equal(t, p.Slices[0].Files[2].File, "symbolic link to openssl")
 	assert.Equal(t, openssl.Path, "/usr/bin/openssl")
 	assert.EqualArrays(t, openssl.Arches, []string{"amd64", "arm64"})
-	assert.Equal(t, openssl.File, "ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped")
+	assert.Equal(t, openssl.File, "ELF <arch> pie, dynamic, <ld>, stripped")
 	assert.Len(t, openssl.Raw, 2)
 	assert.ContainsString(t, openssl.Raw["arm64"], "ARM aarch64")
 

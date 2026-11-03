@@ -141,7 +141,7 @@ func TestOpensslBothBackends(t *testing.T) {
 		for _, f := range s.Files {
 			if f.Path == "/usr/bin/openssl" && s.Name == "bins" {
 				found++
-				if f.File != "ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped" {
+				if f.File != "ELF <arch> pie, dynamic, <ld>, stripped" {
 					t.Errorf("openssl: %s", f.File)
 				}
 				if len(f.Arches) != 2 || len(f.Raw) != 2 {
