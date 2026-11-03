@@ -44,6 +44,10 @@ func TestParse(t *testing.T) {
 	assert.Equal(t, l.Linkage, "statically linked")
 	assert.EqualArrays(t, l.Extras, []string{"no section header"})
 	assert.Equal(t, l.Stripped, "")
+	l, ok = Parse("ELF 64-bit LSB executable, UCB RISC-V, double-float ABI, version 1 (SYSV), statically linked, Go BuildID=abc/def, stripped")
+	assert.That(t, ok)
+	assert.Equal(t, l.Arch(), "riscv64")
+	assert.Equal(t, l.BuildID, "Go BuildID=abc/def")
 	l, ok = Parse("ELF 32-bit MSB relocatable, MIPS, MIPS32 version 1 (SYSV), not stripped")
 	assert.That(t, ok)
 	assert.Equal(t, l.Machine, "MIPS, MIPS32")
@@ -84,6 +88,17 @@ func TestShort(t *testing.T) {
 			"ELF <arch> pie, dynamic, /usr/lib/klibc/bin/klibc.so, stripped"},
 		{"ELF 64-bit LSB core file, x86-64, version 1 (SYSV), SVR4-style, from 'sleep 100'", "amd64",
 			"ELF <arch> core, SVR4-style, from 'sleep 100'"},
+		// Older libmagic spellings and per-binary flags after the machine.
+		{"ELF 32-bit LSB pie executable, Intel 80386, version 1 (SYSV), dynamically linked, interpreter /lib/ld-linux.so.2, BuildID[sha1]=ab, for GNU/Linux 3.2.0, stripped", "i386",
+			"ELF <arch> pie, dynamic, <ld>, stripped"},
+		{"ELF 64-bit LSB executable, UCB RISC-V, double-float ABI, version 1 (SYSV), statically linked, Go BuildID=LYWah4EPy9YFm9DKDBW8/nd-9zn_WtuJnc-dT-84d/qU-_qtPPbowc4mSTnAfz/inMnSxNCvCQmHfhNqSdq, stripped", "riscv64",
+			"ELF <arch> exec, static, stripped"},
+		{"ELF 64-bit LSB shared object, 64-bit PowerPC or cisco 7500, Unspecified or Power ELF V1 ABI, version 1 (SYSV), dynamically linked, stripped", "ppc64el",
+			"ELF <arch> lib, dynamic, stripped"},
+		{"ELF 32-bit LSB executable, ARM, version 1 (SYSV), statically linked, stripped", "armhf",
+			"ELF <arch> exec, static, stripped"},
+		{"ELF 32-bit MSB executable, PowerPC or cisco 4500, version 1 (SYSV), statically linked, stripped", "ppc64el",
+			"ELF 32-bit MSB exec, PowerPC or cisco 4500, static, stripped"},
 	} {
 		l, ok := Parse(tc.line)
 		assert.That(t, ok, tc.line)

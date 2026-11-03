@@ -15,6 +15,7 @@ var (
 	abiTag    = regexp.MustCompile(`,? version [0-9]+ \([^)]*\)`)
 	gzipSize  = regexp.MustCompile(`, original size modulo 2\^32 [0-9]+`)
 	gzipTime  = regexp.MustCompile(`, last modified: [^,]+`)
+	longLines = regexp.MustCompile(`with very long lines \([0-9]+\)`)
 	encodings = strings.NewReplacer(
 		"Unicode text, UTF-8 text", "text",
 		"Unicode text, UTF-8 (with BOM) text", "text",
@@ -30,8 +31,8 @@ var (
 // same line on every architecture. An ELF description is rendered short by
 // elfline for the cut's architecture (arch), a symlink's target is
 // normalised as a path. In any other line build ids,
-// kernel versions, abi tags, text encodings and gzip's size and date go,
-// and the rest stays as file printed it.
+// kernel versions, abi tags, text encodings, gzip's size and date and the
+// length of the longest line go, and the rest stays as file printed it.
 func Normalise(line, arch string) string {
 	if l, ok := elfline.Parse(line); ok {
 		return l.Short(arch)
@@ -46,6 +47,7 @@ func Normalise(line, arch string) string {
 	line = abiTag.ReplaceAllString(line, "")
 	line = gzipSize.ReplaceAllString(line, "")
 	line = gzipTime.ReplaceAllString(line, "")
+	line = longLines.ReplaceAllString(line, "with very long lines")
 	line = encodings.Replace(line)
 	return dedupe(line, ", text")
 }

@@ -45,6 +45,8 @@ func TestNormalise(t *testing.T) {
 		{"ASCII text", "amd64", "text"},
 		{"Unicode text, UTF-8 text", "amd64", "text"},
 		{"Unicode text, UTF-8 text, with very long lines", "amd64", "text, with very long lines"},
+		{"assembler source text, with very long lines (539)", "amd64", "assembler source text, with very long lines"},
+		{"ASCII text, with very long lines (326), with no line terminators", "amd64", "text, with very long lines, with no line terminators"},
 		{"C source, ASCII text", "amd64", "C source, text"},
 		{"ASCII text, with CRLF line terminators", "amd64", "text, with CRLF line terminators"},
 		{"POSIX shell script, ASCII text executable", "amd64", "POSIX shell script, text executable"},
