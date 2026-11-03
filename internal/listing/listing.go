@@ -263,12 +263,18 @@ func split(names []string, arches []Arch) []Group {
 		items := make([][]fold.Item, len(arches))
 		empty := true
 		for i, a := range arches {
+			// An arch: all package is one deb everywhere, so nothing in it
+			// names the architecture: paths and lines are compared as they are.
+			arch := a.Arch
+			if a.DebArch == "all" {
+				arch = ""
+			}
 			for _, e := range a.Slices[name] {
 				path := e.Path
-				if a.DebArch != "all" {
-					path = fold.Normalise(e.Path, a.Arch)
+				if arch != "" {
+					path = fold.Normalise(e.Path, arch)
 				}
-				items[i] = append(items[i], fold.Item{Key: path, Tag: magic.Normalise(e.Line, a.Arch), Raw: e.Path + "\x00" + e.Line})
+				items[i] = append(items[i], fold.Item{Key: path, Tag: magic.Normalise(e.Line, arch), Raw: e.Path + "\x00" + e.Line})
 				empty = false
 			}
 		}

@@ -4,6 +4,8 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/lczyk/chisel-coverage/pkg/fold"
+
 	"github.com/lczyk/chisel-file/internal/elfline"
 )
 
@@ -26,12 +28,18 @@ var (
 
 // Normalise rewrites a file(1) line so that the same kind of file gets the
 // same line on every architecture. An ELF description is rendered short by
-// elfline for the cut's architecture (arch). In any other line build ids,
+// elfline for the cut's architecture (arch), a symlink's target is
+// normalised as a path. In any other line build ids,
 // kernel versions, abi tags, text encodings and gzip's size and date go,
 // and the rest stays as file printed it.
 func Normalise(line, arch string) string {
 	if l, ok := elfline.Parse(line); ok {
 		return l.Short(arch)
+	}
+	// A symlink's target is a path, which names the architecture the way
+	// paths do.
+	if target, ok := strings.CutPrefix(line, "symbolic link to "); ok {
+		return "symbolic link to " + fold.Normalise(target, arch)
 	}
 	line = buildID.ReplaceAllString(line, "")
 	line = forLinux.ReplaceAllString(line, "")
