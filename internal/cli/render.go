@@ -44,7 +44,7 @@ func (s style) wrap(code, text string) string {
 
 // renderText prints one block per (package, slice, group of architectures),
 // or per architecture when group is false: a header line, then one
-// "<path>: <line>" per file. Nothing is indented and no line is blank, so
+// "<path>: <line>" per file, a symlink as "<path> -> <target>". Nothing is indented and no line is blank, so
 // the output greps and pipes. A package that is not available or whose cut
 // failed is one line per such architecture, before its slices.
 func renderText(w io.Writer, pkgs []listing.Package, group bool, s style) {
@@ -81,6 +81,10 @@ func renderGroup(w io.Writer, p listing.Package, g listing.Group, s style) {
 		}
 		fmt.Fprintf(w, "%s %s %s\n", head, sg.Name, arches)
 		for _, f := range sg.Files {
+			if target, ok := strings.CutPrefix(f.Line, "symbolic link to "); ok {
+				fmt.Fprintf(w, "%s -> %s\n", f.Path, target)
+				continue
+			}
 			fmt.Fprintf(w, "%s: %s\n", f.Path, f.Line)
 		}
 	}
