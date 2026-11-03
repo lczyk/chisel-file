@@ -29,13 +29,12 @@ the two are checked against each other: a unit test over handmade files, and an 
 
 a `file` line is normalised for folding across architectures by removing what the architecture determines by definition and what carries no information, and nothing else. the raw line is kept and shown with `--raw`.
 
-- dropped: `BuildID[<kind>]=<hex>`, `for GNU/Linux <version>`, `version <n> (<abi>)`, text encodings (`ASCII`, `UTF-8`, `Unicode`, `ISO-8859`) so that `Python script, ASCII text executable` and `Python script, Unicode text, UTF-8 text executable` are one line, gzip's `original size modulo 2^32 <n>` and `last modified: <date>`.
-- replaced: the elf class, endianness and machine (`64-bit LSB ... x86-64`, `32-bit LSB ... ARM, EABI5`, `64-bit MSB ... IBM S/390`) by `<arch>` when they are the cut's architecture's, and by `<other:<arch>>` when they are another ubuntu architecture's, so a wrong-arch binary is loud; the loader path after `interpreter` by `<ld>` when it is the architecture's own loader, left alone otherwise.
-- kept: the kind (`pie executable`, `shared object`, `relocatable`, `current ar archive`, script, text, compressed data, `empty`), the linkage (`statically linked`, `dynamically linked`, `static-pie linked`), `stripped` / `with debug_info, not stripped`, the script's interpreter, a symlink's target, text modifiers (`with very long lines`, `with CRLF line terminators`).
+- an elf line is parsed field by field (`internal/elfline`) and rendered short: the class, endianness and machine become `<arch>` when they are the cut's architecture's and `<other:<arch>>` when another ubuntu architecture's, so a wrong-arch binary is loud, and stay as they are for a machine not in the table; the type is one word (`exec`, `pie`, `lib`, `obj`, `core`), the linkage too (`static`, `dynamic`, `static-pie`); the loader is `<ld>` when it is the architecture's own and its bare path otherwise; the abi tag, build id and kernel version go; `with debug_info`, `no section header` and the like, and `stripped` / `not stripped`, stay.
+- in any other line: text encodings go (`ASCII`, `UTF-8`, `Unicode`, `ISO-8859`), so that `Python script, ASCII text executable` and `Python script, Unicode text, UTF-8 text executable` are one line, and so do gzip's `original size modulo 2^32 <n>` and `last modified: <date>`. the kind (script and its interpreter, text, compressed data, `current ar archive`, `empty`), a symlink's target and text modifiers (`with very long lines`, `with CRLF line terminators`) stay.
 
-`openssl` on seven architectures becomes `ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped` everywhere. the armhf loader of ubuntu 24.04 is `with debug_info, not stripped` where every other is `stripped`, and stays apart, which is the point.
+`openssl` on seven architectures becomes `ELF <arch> pie, dynamic, <ld>, stripped` everywhere. the armhf loader of ubuntu 24.04 is `with debug_info, not stripped` where every other is `stripped`, and stays apart, which is the point.
 
-the table of per-architecture strings is in one place (`internal/magic/normalise.go`) and the test corpus is real `file` 5.48 lines from every architecture.
+the table of per-architecture strings is in one place (`internal/elfline`) and the test corpus is real `file` 5.48 lines from every architecture.
 
 ### folding
 
@@ -79,11 +78,11 @@ text, one block per (package, slice, group of architectures), nothing indented a
 ```
 openssl 3.0.13-0ubuntu3.4 bins [amd64, arm64, armhf, i386, ppc64el, riscv64, s390x]
 /usr/bin/c_rehash: Perl script text executable
-/usr/bin/openssl: ELF <arch> pie executable, dynamically linked, interpreter <ld>, stripped
+/usr/bin/openssl: ELF <arch> pie, dynamic, <ld>, stripped
 libc6 2.39-0ubuntu8 libs [amd64, arm64, i386, ppc64el, riscv64, s390x]
-/usr/lib/<arch>-linux-<gnu>/ld-linux-<arch>.so.1: ELF <arch> shared object, static-pie linked, stripped
+/usr/lib/<arch>-linux-<gnu>/ld-linux-<arch>.so.1: ELF <arch> lib, static-pie, stripped
 libc6 2.39-0ubuntu8 libs [armhf]
-/usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3: ELF <arch> shared object, static-pie linked, with debug_info, not stripped
+/usr/lib/arm-linux-gnueabihf/ld-linux-armhf.so.3: ELF <arch> lib, static-pie, with debug_info, not stripped
 bash [i386]: not available
 ```
 
@@ -96,7 +95,7 @@ a line is `<path>: <line>`, `file`'s own format, sorted by path, except a symlin
  "packages": [{"name": "openssl",
    "arches": [{"arch": "amd64", "available": true, "version": "3.0.13-0ubuntu3.4", "deb-arch": "amd64", "error": null}, ...],
    "slices": [{"name": "bins", "files": [
-     {"path": "/usr/bin/openssl", "arches": ["amd64", "arm64"], "file": "ELF <arch> pie executable, ..."},
+     {"path": "/usr/bin/openssl", "arches": ["amd64", "arm64"], "file": "ELF <arch> pie, dynamic, <ld>, stripped"},
      ...]}]}]}
 ```
 
@@ -106,7 +105,8 @@ a record's `file` is normalised, and its `path` too when it spans several archit
 
 mirrors chisel-coverage: `cmd/`, `internal/{cli,listing,magic}`, `version.go` + `VERSION`, `e2e/`, lowercase `makefile`, agpl-3.
 
-- `internal/magic` -- the `Backend` interface, the `file` and `builtin` backends, the normalisation table.
+- `internal/elfline` -- file's elf description parsed field by field, and rendered short for an architecture.
+- `internal/magic` -- the `Backend` interface, the `file` and `builtin` backends, the normalisation of every other line.
 - `internal/listing` -- the run: `cuts.Run` with a `Visit` that lists each rootfs, ignores applied, `arch: all` stand-ins copied, then the folding into report groups.
 - `internal/cli` -- flags, text and json rendering, exit codes.
 
