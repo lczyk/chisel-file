@@ -145,7 +145,7 @@ type flags struct {
 	Arches  []string `long:"arch" value-name:"<a>[,<a>...]" description:"architectures to list; \"all\" for every one (default: host)"`
 	Slices  []string `long:"slice" value-name:"<s>[,<s>...]" description:"slices to list, bare or <package>_<slice>; \"deb\" is the whole deb, which needs no slice definition file, \"all\" is every slice (default: deb)"`
 	Ignores []string `long:"ignore" value-name:"<glob>[,...]" description:"leave matching paths out (chisel glob syntax)"`
-	Backend string   `long:"backend" value-name:"<file|builtin>" description:"what runs file: the binary on PATH, or the built-in port (default: file when found)"`
+	Backend string   `long:"backend" value-name:"<builtin|path>" description:"what runs file: the built-in port of libmagic (default), or the file binary on PATH"`
 	Raw     bool     `long:"raw" description:"show file's lines as they are, no normalising; with --json, add every architecture's raw line"`
 	NoGroup bool     `long:"no-group" description:"one block per architecture, raw paths and lines, instead of folding architectures with the same result"`
 	JSON    bool     `long:"json" description:"machine-readable output, folded"`
@@ -192,9 +192,9 @@ func parseArgs(args []string, help io.Writer) (f flags, pkgs []string, err error
 		*l = splitLists(*l)
 	}
 	switch f.Backend {
-	case "", "file", "builtin":
+	case "", "builtin", "path":
 	default:
-		return f, nil, fmt.Errorf("--backend must be file or builtin, not %q", f.Backend)
+		return f, nil, fmt.Errorf("--backend must be builtin or path, not %q", f.Backend)
 	}
 	return f, pkgs, nil
 }

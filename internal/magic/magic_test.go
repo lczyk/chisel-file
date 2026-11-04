@@ -94,17 +94,17 @@ func TestListMissingPathIsALine(t *testing.T) {
 	assert.That(t, strings.HasPrefix(entries[0].Line, "error: "), entries[0].Line)
 }
 
-// TestFileMatchesBuiltin runs both backends over the same tree and wants
+// TestPathMatchesBuiltin runs both backends over the same tree and wants
 // the same raw lines. The host's file may be another release than the
 // one softmagic implements, so a difference only fails when the versions
 // match; otherwise it is logged.
-func TestFileMatchesBuiltin(t *testing.T) {
+func TestPathMatchesBuiltin(t *testing.T) {
 	if _, err := exec.LookPath(FileBinary()); err != nil {
 		t.Skipf("file binary not found (%v); set FILE=/path/to/file", err)
 	}
-	f, err := NewFile()
+	f, err := NewPath()
 	assert.NoError(t, err)
-	assert.Equal(t, f.Name(), "file")
+	assert.Equal(t, f.Name(), "path")
 	b, err := NewBuiltin()
 	assert.NoError(t, err)
 	root, paths := rootfs(t)
@@ -134,7 +134,7 @@ func TestPick(t *testing.T) {
 	_, err = Pick("magic")
 	assert.Error(t, err, "unknown backend")
 	t.Setenv("FILE", "/nope/file")
-	_, err = Pick("file")
+	_, err = Pick("path")
 	assert.Error(t, err, "no file binary")
 	b, err = Pick("")
 	assert.NoError(t, err)

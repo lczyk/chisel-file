@@ -37,7 +37,7 @@ func TestParseArgs(t *testing.T) {
 	assert.Equal(t, f.Jobs, -1)
 
 	_, _, err = parseArgs([]string{"--backend", "magic", "bash"}, io.Discard)
-	assert.Error(t, err, "--backend must be file or builtin")
+	assert.Error(t, err, "--backend must be builtin or path")
 	_, _, err = parseArgs([]string{"--nope", "bash"}, io.Discard)
 	assert.Error(t, err, "unknown flag `nope'")
 
@@ -45,7 +45,7 @@ func TestParseArgs(t *testing.T) {
 	f, _, err = parseArgs([]string{"-h"}, &help)
 	assert.NoError(t, err)
 	assert.That(t, f.help)
-	assert.ContainsString(t, help.String(), "--backend=<file|builtin>")
+	assert.ContainsString(t, help.String(), "--backend=<builtin|path>")
 }
 
 func TestSelectSlices(t *testing.T) {
@@ -133,7 +133,7 @@ func TestStyleFor(t *testing.T) {
 
 func TestRenderJSON(t *testing.T) {
 	var out bytes.Buffer
-	run := runInfo{Backend: "file", Magic: "file-5.48", Chisel: "v1", Release: "ubuntu-24.04"}
+	run := runInfo{Backend: "path", Magic: "file-5.48", Chisel: "v1", Release: "ubuntu-24.04"}
 	assert.NoError(t, renderJSON(&out, run, sample(), true))
 	assert.ContainsString(t, out.String(), `"path": "/usr/lib/<arch>-linux-<gnu>/libssl.so.3"`)
 	var got struct {
@@ -263,7 +263,7 @@ func TestMainExitCodes(t *testing.T) {
 	assert.ContainsString(t, out, `"arch": "amd64"`)
 
 	t.Setenv("FILE", "/nope/file")
-	code, _ = captureStdout(t, func() int { return Main([]string{"--release", rel, "--arch", "amd64", "--backend", "file", "demo"}) })
+	code, _ = captureStdout(t, func() int { return Main([]string{"--release", rel, "--arch", "amd64", "--backend", "path", "demo"}) })
 	assert.Equal(t, code, 2)
 	code, out = captureStdout(t, func() int { return Main([]string{"--release", rel, "--arch", "amd64", "demo"}) })
 	assert.Equal(t, code, 0)

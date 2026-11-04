@@ -8,20 +8,20 @@ import (
 	"strings"
 )
 
-// fileBackend runs the file binary, one process per rootfs.
-type fileBackend struct {
+// pathBackend runs the host's file binary, one process per rootfs.
+type pathBackend struct {
 	bin     string
 	version string
 }
 
-func (f *fileBackend) Name() string    { return "file" }
-func (f *fileBackend) Version() string { return f.version }
+func (f *pathBackend) Name() string    { return "path" }
+func (f *pathBackend) Version() string { return f.version }
 
 // Identify runs "file -N -0 -f -" over the paths. file acts on -f while
 // parsing its options, so every other flag must come before it. With -0
 // each line is "<name>\0: <description>", which makes the split exact
 // however the name looks.
-func (f *fileBackend) Identify(root string, paths []string) ([]string, error) {
+func (f *pathBackend) Identify(root string, paths []string) ([]string, error) {
 	var in bytes.Buffer
 	for _, p := range paths {
 		in.WriteString(filepath.Join(root, p))

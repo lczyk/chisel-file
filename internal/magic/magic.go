@@ -13,7 +13,7 @@ import (
 
 // Backend answers what file(1) prints for regular files.
 type Backend interface {
-	// Name is "file" or "builtin".
+	// Name is "builtin" or "path".
 	Name() string
 	// Version names the libmagic whose answers these are.
 	Version() string
@@ -30,21 +30,16 @@ type Entry struct {
 	Line string
 }
 
-// Pick returns the backend for a --backend value: "file" or "builtin", or
-// "" for file when a binary is found and builtin otherwise.
+// Pick returns the backend for a --backend value: "builtin", "path", or ""
+// for builtin.
 func Pick(name string) (Backend, error) {
 	switch name {
-	case "file":
-		return NewFile()
-	case "builtin":
+	case "", "builtin":
 		return NewBuiltin()
-	case "":
-		if b, err := NewFile(); err == nil {
-			return b, nil
-		}
-		return NewBuiltin()
+	case "path":
+		return NewPath()
 	}
-	return nil, fmt.Errorf("unknown backend %q, want file or builtin", name)
+	return nil, fmt.Errorf("unknown backend %q, want builtin or path", name)
 }
 
 // FileBinary returns the file binary to run: $FILE, else "file" on PATH.
@@ -55,11 +50,12 @@ func FileBinary() string {
 	return "file"
 }
 
-// NewFile returns the file backend, or an error when no binary is found.
-func NewFile() (Backend, error) {
+// NewPath returns the path backend, the file binary on the host, or an
+// error when none is found.
+func NewPath() (Backend, error) {
 	bin, err := exec.LookPath(FileBinary())
 	if err != nil {
-		return nil, fmt.Errorf("no file binary: %w (set FILE=/path/to/file, or --backend=builtin)", err)
+		return nil, fmt.Errorf("no file binary: %w (set FILE=/path/to/file, or drop --backend=path)", err)
 	}
 	out, err := exec.Command(bin, "--version").Output()
 	if err != nil {
@@ -69,7 +65,7 @@ func NewFile() (Backend, error) {
 	if i := indexByte(version, '\n'); i >= 0 {
 		version = version[:i]
 	}
-	return &fileBackend{bin: bin, version: version}, nil
+	return &pathBackend{bin: bin, version: version}, nil
 }
 
 func indexByte(s string, c byte) int {

@@ -141,7 +141,7 @@ func setup(t *testing.T) *fixture {
 	t.Setenv("FAKE_FAIL", "")
 	t.Setenv("FAKE_NOCONTENT", "")
 	t.Setenv("XDG_CACHE_HOME", filepath.Join(tmp, "xdg"))
-	backend, err := magic.NewFile()
+	backend, err := magic.NewPath()
 	assert.NoError(t, err)
 	f.opts = Options{Backend: backend, Cuts: cuts.Options{Release: f.release, Arches: []string{"amd64", "arm64", "i386"}, Runner: &cut.Runner{Bin: chisel}}}
 	return f

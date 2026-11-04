@@ -164,10 +164,10 @@ func TestOpensslBothBackends(t *testing.T) {
 	}
 
 	if _, err := exec.LookPath(magic.FileBinary()); err != nil {
-		t.Logf("no file binary (%v): the file backend is not compared", err)
+		t.Logf("no file binary (%v): the path backend is not compared", err)
 		return
 	}
-	file := run(t, append([]string{"--backend", "file"}, args...)...)
+	file := run(t, append([]string{"--backend", "path"}, args...)...)
 	// "softmagic v0.4.3 (file 5.48)" against "file-5.48".
 	same := strings.HasPrefix(file.Run.Magic, "file-"+implemented.FindStringSubmatch(builtin.Run.Magic)[1])
 	raw := map[string]string{}

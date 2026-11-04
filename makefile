@@ -27,7 +27,7 @@ install: ./bin/chisel-file  ## Symlink the binary into ~/.local/bin
 ##@ checks
 
 .PHONY: test
-test:  ## Run the unit tests with the race detector (the file-vs-builtin one skips without `file`)
+test:  ## Run the unit tests with the race detector (the path-vs-builtin one skips without `file`)
 	@if command -v gotest >/dev/null 2>&1; then \
 		gotest -race ./...; \
 	else \
