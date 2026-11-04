@@ -54,8 +54,8 @@ chisel-file [flags] <package>...
                                definition file, "all" is every slice
                                (default: deb)
       --ignore=<glob>[,...]    leave matching paths out (chisel glob syntax)
-      --backend=<builtin|path>    what runs file: the built-in port of libmagic
-                                  (default), or the file binary on PATH
+      --backend=<builtin|path> what runs file: the built-in port of libmagic
+                               (default), or the file binary on PATH
       --raw                    show file's lines as they are, no normalising;
                                with --json, add every architecture's raw line
       --no-group               one block per architecture, raw paths and lines
