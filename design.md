@@ -30,7 +30,7 @@ the two are checked against each other: a unit test over handmade files, and an 
 a `file` line is normalised for folding across architectures by removing what the architecture determines by definition and what carries no information, and nothing else. the raw line is kept and shown with `--raw`.
 
 - an elf line is parsed field by field (`internal/elfline`) and rendered short: the class, endianness and machine become `<arch>` when they are the cut's architecture's and `<other:<arch>>` when another ubuntu architecture's, so a wrong-arch binary is loud, and stay as they are for a machine not in the table; the type is one word (`exec`, `pie`, `lib`, `obj`, `core`), the linkage too (`static`, `dynamic`, `static-pie`); the loader is `<ld>` when it is the architecture's own and its bare path otherwise; the abi tag, build id and kernel version go; `with debug_info`, `no section header` and the like, and `stripped` / `not stripped`, stay.
-- in any other line: text encodings go (`ASCII`, `UTF-8`, `Unicode`, `ISO-8859`), so that `Python script, ASCII text executable` and `Python script, Unicode text, UTF-8 text executable` are one line, and so do gzip's `original size modulo 2^32 <n>` and `last modified: <date>`. the kind (script and its interpreter, text, compressed data, `current ar archive`, `empty`), a symlink's target and text modifiers (`with very long lines`, `with CRLF line terminators`) stay.
+- in any other line: text encodings go (`ASCII`, `UTF-8`, `Unicode`, `ISO-8859`), so that `Python script, ASCII text executable` and `Python script, Unicode text, UTF-8 text executable` are one line, and so do gzip's `original size modulo 2^32 <n>` and `last modified: <date>`. a language guessed from keywords with no magic behind it (`c program text`, `C source`, `C++ source`, `Java source`, `Nim source code`, `Algol 68 source text`, `HTML document text`, `exported SGML document text`, `CSV text`, `assembler source text`, `Ruby script text` without `executable`, rust's `#![allow(..)]` read as a shebang) becomes `text`, since the same `.go` file is any of five of them by how many keywords it holds and a header is `c program text` on one architecture and `text` on another. phrasing that moved between libmagic releases is written the 5.48 way: `Perl script text executable` is `Perl script, text executable`, `JSON data` is `JSON text data`, and 5.41's `Python script text executable Python script text executable` is said once. the kind (script and its interpreter, text, compressed data, `current ar archive`, `empty`), a symlink's target and text modifiers (`with very long lines`, `with CRLF line terminators`) stay.
 
 `openssl` on seven architectures becomes `ELF <arch> pie, dynamic, <ld>, stripped` everywhere. the armhf loader of ubuntu 24.04 is `with debug_info, not stripped` where every other is `stripped`, and stays apart, which is the point.
 
@@ -77,7 +77,7 @@ text, one block per (package, slice, group of architectures), nothing indented a
 
 ```
 openssl 3.0.13-0ubuntu3.4 bins [amd64, arm64, armhf, i386, ppc64el, riscv64, s390x]
-/usr/bin/c_rehash: Perl script text executable
+/usr/bin/c_rehash: Perl script, text executable
 /usr/bin/openssl: ELF <arch> pie, dynamic, <ld>, stripped
 libc6 2.39-0ubuntu8 libs [amd64, arm64, i386, ppc64el, riscv64, s390x]
 /usr/lib/<arch>-linux-<gnu>/ld-linux-<arch>.so.1: ELF <arch> lib, static-pie, stripped

@@ -16,7 +16,7 @@ when writing or reviewing a slice definition we want to know what actually lands
 ```shell
 chisel-file --release ubuntu-24.04 --arch all --slice all --ignore '/usr/share/doc/**' openssl libssl3t64
 openssl 3.0.13-0ubuntu3.16 bins [amd64, arm64, armhf, i386, ppc64el, riscv64, s390x]
-/usr/bin/c_rehash: Perl script text executable
+/usr/bin/c_rehash: Perl script, text executable
 /usr/bin/openssl: ELF <arch> pie, dynamic, <ld>, stripped
 openssl 3.0.13-0ubuntu3.16 config [amd64, arm64, armhf, i386, ppc64el, riscv64, s390x]
 /etc/ssl/openssl.cnf: text
@@ -30,7 +30,7 @@ libssl3t64 3.0.13-0ubuntu3.16 libs [amd64]
 /usr/lib/x86_64-linux-gnu/engines-3/padlock.so: ELF <arch> lib, dynamic, stripped
 ```
 
-every file and symlink of a slice counts, directories do not. one block per package, slice and set of architectures that agree, most architectures first. a line is `<path>: <description>`, `file`'s own format, so `cut -d: -f2- | sort | uniq -c` is the histogram. descriptions are normalised for folding: an elf line becomes `ELF <arch> <type>, <linkage>, <ld>, stripped` with the type one of `exec` / `pie` / `lib` / `obj` / `core` and the linkage `static` / `dynamic` / `static-pie` (`<other:amd64>` for a binary of the wrong architecture, the loader's path when it is not the architecture's own), build ids, kernel versions, abi tags and text encodings go, and paths fold like chisel-coverage's. what is kept is what a reviewer reads: the kind, the linkage, stripped or not, the script's interpreter, a symlink's target. `--raw` shows `file`'s lines as they are, `--no-group` one block per architecture.
+every file and symlink of a slice counts, directories do not. one block per package, slice and set of architectures that agree, most architectures first. a line is `<path>: <description>`, `file`'s own format, so `cut -d: -f2- | sort | uniq -c` is the histogram. descriptions are normalised for folding: an elf line becomes `ELF <arch> <type>, <linkage>, <ld>, stripped` with the type one of `exec` / `pie` / `lib` / `obj` / `core` and the linkage `static` / `dynamic` / `static-pie` (`<other:amd64>` for a binary of the wrong architecture, the loader's path when it is not the architecture's own), build ids, kernel versions, abi tags and text encodings go, a language `file` guessed from keywords alone (`c program text`, `Java source`, `HTML document text`, `Nim source code` for the same `.go` file) is plain `text`, phrasing that moved between libmagic releases is written one way, and paths fold like chisel-coverage's. what is kept is what a reviewer reads: the kind, the linkage, stripped or not, the script's interpreter, a symlink's target. `--raw` shows `file`'s lines as they are, `--no-group` one block per architecture.
 
 by default the whole deb is listed, as a slice called `deb`, which needs no slice definition file. `--slice` picks what to list: `all` is every slice of the sdf, `deb` the whole deb, any other name that slice, and they combine (`--slice all,deb`, `--slice bins,deb`). `--ignore` takes chisel globs, as in chisel-coverage.
 
