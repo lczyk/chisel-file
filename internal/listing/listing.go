@@ -278,7 +278,7 @@ func split(names []string, arches []Arch) []Group {
 				if arch != "" {
 					path = fold.Normalise(e.Path, arch)
 				}
-				items[i] = append(items[i], fold.Item{Key: path, Tag: magic.Normalise(e.Line, arch), Raw: e.Path})
+				items[i] = append(items[i], fold.Item{Key: path, Tag: magic.Normalise(e.Line, arch), Raw: e.Path, RawTag: e.Line})
 				lines[a.Arch+"\x00"+e.Path] = e.Line
 				empty = false
 			}
@@ -297,8 +297,15 @@ func split(names []string, arches []Arch) []Group {
 			sg := SliceGroup{Name: name, Files: make([]File, 0, len(fg.Entries))}
 			for _, e := range fg.Entries {
 				f := File{Path: e.Shown(), Line: e.Tag, Raw: make([]string, len(e.Raw))}
+				same := true
 				for i, path := range e.Raw {
 					f.Raw[i] = lines[fg.Arches[i]+"\x00"+path]
+					same = same && f.Raw[i] == f.Raw[0]
+				}
+				// A symlink's target is a path: shown as it is when every
+				// architecture has the same one, like a path is.
+				if same && strings.HasPrefix(f.Raw[0], "symbolic link to ") {
+					f.Line = f.Raw[0]
 				}
 				sg.Files = append(sg.Files, f)
 			}

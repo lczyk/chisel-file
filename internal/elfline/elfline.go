@@ -8,6 +8,10 @@ import (
 	"strings"
 )
 
+// klibc names its shared loader after a hash of its build, so the path
+// differs per architecture and upload: /usr/lib/klibc-vJ92VccDdUm9RkZ29z4hx5GyxAs.so.
+var klibc = regexp.MustCompile(`^(/usr)?/lib/klibc-[A-Za-z0-9_-]{27}\.so$`)
+
 // Line is file(1)'s ELF description, field by field.
 type Line struct {
 	Mode     string   // the stat layer's words before ELF: "setuid", "setuid, setgid"
@@ -139,7 +143,8 @@ var (
 // endianness and machine become <arch> when they are arch's own and
 // <other:<name>> when another known architecture's, and stay as they are
 // for a machine not in the table; the loader becomes <ld> when it is the
-// architecture's own, else stays as its path. The type and linkage are one
+// architecture's own, klibc's loses the build hash in its name, and any
+// other stays as its path. The type and linkage are one
 // word each, the abi, build id and kernel version go, the extras and the
 // stripping stay.
 //
@@ -174,9 +179,12 @@ func (l Line) Short(arch string) string {
 		}
 	}
 	if l.Interp != "" {
-		if own != nil && own.name == arch && l.Interp == own.loader {
+		switch {
+		case own != nil && own.name == arch && l.Interp == own.loader:
 			b.WriteString(", <ld>")
-		} else {
+		case klibc.MatchString(l.Interp):
+			b.WriteString(", " + klibc.ReplaceAllString(l.Interp, "$1/lib/klibc-<hash>.so"))
+		default:
 			b.WriteString(", " + l.Interp)
 		}
 	}

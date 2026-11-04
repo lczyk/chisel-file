@@ -46,6 +46,8 @@ func TestNormalise(t *testing.T) {
 		{"a /usr/bin/env node script text executable", "amd64", "a /usr/bin/env node script, text executable"},
 		// file 5.41 says a kind twice when the shebang and the keywords both match.
 		{"Python script text executable Python script text executable, ASCII text", "amd64", "Python script, text executable"},
+		{"XHTML document text (version 1.0) XHTML document text (version 1.0), Unicode text, UTF-8 text, with very long lines (1543)", "amd64", "XHTML document text (version 1.0), with very long lines"},
+		{"XHTML document text (version 1.0) XHTML document text (version 1.0), ASCII text", "amd64", "XHTML document text (version 1.0)"},
 		{"JSON data", "amd64", "JSON text data"},
 		{"JSON text data", "amd64", "JSON text data"},
 		{"ASCII text", "amd64", "text"},
@@ -69,6 +71,21 @@ func TestNormalise(t *testing.T) {
 		{"XML 1.0 document text", "amd64", "XML 1.0 document text"},
 		{"GNU gettext message catalogue text", "amd64", "GNU gettext message catalogue text"},
 		{"CSV text", "amd64", "text"},
+		{"JavaScript source, ASCII text", "amd64", "text"},
+		{"Certificate, Version=3 Certificate, Version=01", "amd64", "Certificate, Version=3"},
+		{"PE32+ executable for EFI (application), x86-64 (stripped to external PDB), 8 sections", "amd64", "PE <arch> EFI application (stripped to external PDB)"},
+		{"PE32+ executable for EFI (application), ARM64 (stripped to external PDB), 6 sections", "arm64", "PE <arch> EFI application (stripped to external PDB)"},
+		{"PE32 executable for EFI (application), ARMv4T (stripped to external PDB), 4 sections", "armhf", "PE <arch> EFI application (stripped to external PDB)"},
+		{"PE32+ executable for EFI (application), RISC-V 64-bit (stripped to external PDB), 6 sections", "amd64", "PE <other:riscv64> EFI application (stripped to external PDB)"},
+		{"Java archive data (JAR) Java archive data (JAR)", "amd64", "Java archive data (JAR)"},
+		{"HTML document text HTML document, ASCII text", "amd64", "text"},
+		// A shebang file could not read as an interpreter is no interpreter.
+		{"a bash\" script, ASCII text executable", "amd64", "text executable"},
+		{"a <%= Bundler.settings[:shebang] || \"/usr/bin/env ruby\" %> script text executable", "amd64", "text"},
+		{"a . script, ASCII text executable", "amd64", "text executable"},
+		{"a /bin/false script text executable", "amd64", "a /bin/false script, text executable"},
+		{"Typst source, ASCII text", "amd64", "text"},
+		{"SAS 7+", "amd64", "text"},
 		{"ASCII text, with CRLF line terminators", "amd64", "text, with CRLF line terminators"},
 		{"POSIX shell script, ASCII text executable", "amd64", "POSIX shell script, text executable"},
 		{"empty", "amd64", "empty"},
@@ -88,6 +105,12 @@ func TestNormalise(t *testing.T) {
 		{"gzip compressed data, max compression, from Unix, original size modulo 2^32 4660", "amd64", "gzip compressed data, max compression, from Unix"},
 		{"gzip compressed data, was \"bash.1\", last modified: Thu Mar 14 2024, from Unix, original size modulo 2^32 4660", "amd64", "gzip compressed data, was \"bash.1\", from Unix"},
 		{"current ar archive", "amd64", "current ar archive"},
+		// A .NET ready-to-run image names its target as an unknown processor.
+		{"PE32+ executable for MS Windows 4.00 (DLL), Unknown processor 0xfd1d Mono/.Net assembly, 3 sections", "amd64", "PE <arch> Mono/.Net assembly (DLL), 3 sections"},
+		{"PE32+ executable for MS Windows 4.00 (DLL), Unknown processor 0xd11d Mono/.Net assembly, 3 sections", "arm64", "PE <arch> Mono/.Net assembly (DLL), 3 sections"},
+		{"PE32 executable for MS Windows 4.00 (DLL), Unknown processor 0x7abd Mono/.Net assembly, 3 sections", "armhf", "PE <arch> Mono/.Net assembly (DLL), 3 sections"},
+		{"PE32+ executable for MS Windows 4.00 (console), Unknown processor 0xfd1d Mono/.Net assembly, 3 sections", "arm64", "PE <other:amd64> Mono/.Net assembly (console), 3 sections"},
+		{"PE32 executable for MS Windows 4.00 (DLL), Intel i386 Mono/.Net assembly, 3 sections", "amd64", "PE32 executable for MS Windows 4.00 (DLL), Intel i386 Mono/.Net assembly, 3 sections"},
 		{"data", "amd64", "data"},
 	} {
 		assert.Equal(t, Normalise(tc.line, tc.arch), tc.want, tc.line)

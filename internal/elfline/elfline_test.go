@@ -97,6 +97,8 @@ func TestShort(t *testing.T) {
 			"ELF <arch> lib, dynamic, stripped"},
 		{"ELF 32-bit LSB executable, ARM, version 1 (SYSV), statically linked, stripped", "armhf",
 			"ELF <arch> exec, static, stripped"},
+		{"ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, interpreter /usr/lib/klibc-vJ92VccDdUm9RkZ29z4hx5GyxAs.so, BuildID[sha1]=6e, stripped", "amd64",
+			"ELF <arch> exec, static, /usr/lib/klibc-<hash>.so, stripped"},
 		{"ELF 32-bit MSB executable, PowerPC or cisco 4500, version 1 (SYSV), statically linked, stripped", "ppc64el",
 			"ELF 32-bit MSB exec, PowerPC or cisco 4500, static, stripped"},
 		// The known machine in the other byte order or class is nobody's.
