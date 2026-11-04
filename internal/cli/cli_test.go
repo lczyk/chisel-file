@@ -93,7 +93,7 @@ func TestRenderText(t *testing.T) {
 	var out bytes.Buffer
 	renderText(&out, sample(), true, style{})
 	assert.Equal(t, out.String(), `openssl 3.0.13-1 bins [amd64, arm64]
-/usr/bin/c_rehash: Perl script text executable
+/usr/bin/c_rehash: Perl script, text executable
 /usr/bin/openssl: ELF <arch> pie, dynamic, <ld>, stripped
 /usr/bin/ssl -> openssl
 openssl 3.0.13-1 libs [amd64, arm64]
