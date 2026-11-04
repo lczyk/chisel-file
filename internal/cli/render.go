@@ -76,15 +76,15 @@ func renderGroup(w io.Writer, p listing.Package, g listing.Group, s style) {
 	if g.DebArch == "all" {
 		version += " (all)"
 	}
+	head := name
+	if version != "" {
+		head += " " + version
+	}
 	if len(g.Slices) == 0 {
-		fmt.Fprintf(w, "%s %s: %s\n", name, arches, s.wrap(s.yellow, "no slices"))
+		fmt.Fprintf(w, "%s %s: %s\n", head, arches, s.wrap(s.yellow, "no slices"))
 		return
 	}
 	for _, sg := range g.Slices {
-		head := name
-		if version != "" {
-			head += " " + version
-		}
 		fmt.Fprintf(w, "%s %s %s\n", head, sg.Name, arches)
 		for _, f := range sg.Files {
 			if target, ok := strings.CutPrefix(f.Line, "symbolic link to "); ok {
