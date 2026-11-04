@@ -74,7 +74,7 @@ func TestNormalise(t *testing.T) {
 		{"empty", "amd64", "empty"},
 		{"symbolic link to libz.so.1.3", "amd64", "symbolic link to libz.so.1.3"},
 		{"symbolic link to x86_64-linux-gnu-ld.bfd", "amd64", "symbolic link to <arch>-linux-<gnu>-ld.bfd"},
-		{"symbolic link to ../lib/aarch64-linux-gnu/ld-linux-aarch64.so.1", "arm64", "symbolic link to ../lib/<arch>-linux-<gnu>/ld-linux-aarch64.so.1"},
+		{"symbolic link to ../lib/aarch64-linux-gnu/ld-linux-aarch64.so.1", "arm64", "symbolic link to ../lib/<arch>-linux-<gnu>/ld-linux-<arch>.so.1"},
 		{"symbolic link to /usr/lib/jvm/java-21-openjdk-amd64/bin/java", "amd64", "symbolic link to /usr/lib/jvm/java-21-openjdk-<arch>/bin/java"},
 		// An arch: all deb is one deb everywhere: nothing of it names the architecture.
 		{"symbolic link to x86_64-linux-gnu-ld.bfd", "", "symbolic link to x86_64-linux-gnu-ld.bfd"},

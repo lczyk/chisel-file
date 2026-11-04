@@ -6,7 +6,7 @@ require (
 	code.eitanity.com/softmagic v0.4.3
 	github.com/jessevdk/go-flags v1.6.1
 	github.com/lczyk/assert v0.7.2
-	github.com/lczyk/chisel-coverage/pkg v0.3.3
+	github.com/lczyk/chisel-coverage/pkg v0.3.4
 	github.com/lczyk/version/go v0.6.0
 )
 
