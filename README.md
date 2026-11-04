@@ -34,7 +34,7 @@ every file and symlink of a slice counts, directories do not. one block per pack
 
 by default the whole deb is listed, as a slice called `deb`, which needs no slice definition file. a package the release has no slice definition file for is a package with no slices: its deb lists like any other, `--ignore` and all, and `--slice all` finds nothing of it. `--slice` picks what to list: `all` is every slice of the sdf, `deb` the whole deb, any other name that slice, and they combine (`--slice all,deb`, `--slice bins,deb`). `--ignore` takes chisel globs, as in chisel-coverage.
 
-`--json` is the same folding, machine-readable: per package the state of every architecture, then per slice one record per `(path, description, architectures)`; `--raw` adds every architecture's own line to each record. the `run` block names the backend, its libmagic version, chisel's version and the release.
+`--json` is the same folding, machine-readable: per package the state of every architecture, then per slice one record per `(path, description, architectures)`; `--raw` adds every architecture's own line to each record, `--no-group` makes every record one architecture's own path and line. the `run` block names the backend, its libmagic version, chisel's version and the release.
 
 ## backends
 

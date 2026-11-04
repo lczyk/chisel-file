@@ -13,7 +13,7 @@ chisel does the cutting and `file` does the judging. the tool never reads an arc
 for each package:
 
 1. `chisel-coverage/pkg/cuts` cuts every slice of the package's sdf on every architecture asked for, stripped the way chisel-coverage strips them: essentials, mutate scripts, `text` / `symlink` / `make` / `generate` entries gone, `copy` entries re-keyed by their source. so a listing is what the deb puts in the slice, nothing from other packages and nothing generated. `--ignore` globs become extra slices whose paths are dropped from every listing. `--slice` picks what is listed: `deb` is the whole-deb slice, listed under that name, which needs no sdf; `all` is every slice of the sdf, as in chisel-coverage; any other name is that slice; the three combine. nothing given is `deb` alone.
-2. while each cut's rootfs exists, every regular file in it goes through the backend and every symlink is read: the line for a symlink is `symbolic link to <target>` from the tool itself, not from `file`, because `file` resolves the target against the host's `/`, which is not the rootfs. directories are not listed: the implicit parents of a file are what the reader already knows.
+2. while each cut's rootfs exists, every regular file in it goes through the backend, every symlink is read, and a fifo, socket or device is named by `file`'s word for it (`fifo (named pipe)`, `socket`): the line for a symlink is `symbolic link to <target>` from the tool itself, not from `file`, because `file` resolves the target against the host's `/`, which is not the rootfs. directories are not listed: the implicit parents of a file are what the reader already knows.
 3. per architecture the result is, per slice, one `(path, line)` per file. an `arch: all` package is cut on the lead architecture only and probed on the rest, so its listing is copied from the lead.
 
 ### backends
@@ -99,7 +99,7 @@ a line is `<path>: <line>`, `file`'s own format, sorted by path, except a symlin
      ...]}]}]}
 ```
 
-a record's `file` is normalised, and its `path` too when it spans several architectures. `--raw` adds `"raw": {"<arch>": "<line>"}` to every record. `arches` holds every architecture asked for, so a reader knows which are missing from a record because the package is not there and which because the file is not.
+a record's `file` is normalised, and its `path` too when it spans several architectures. with `--no-group` every record is one architecture's, path and line as they are. `--raw` adds `"raw": {"<arch>": "<line>"}` to every record. `arches` holds every architecture asked for, so a reader knows which are missing from a record because the package is not there and which because the file is not.
 
 ## layout
 
