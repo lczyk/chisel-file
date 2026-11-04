@@ -38,7 +38,7 @@ by default the whole deb is listed, as a slice called `deb`, which needs no slic
 
 ## backends
 
-`file` is what the host has on `PATH` (or `FILE=/path/to/file`), one process per cut. `builtin` is [softmagic](https://github.com/eitanity/softmagic), a pure-go port of libmagic with its database embedded, which answers byte for byte what `file` 5.48 does. the default is `file` when found, else `builtin`; `--backend` forces one. descriptions change between libmagic releases, so the json says which ran.
+`builtin`, the default, is [softmagic](https://github.com/eitanity/softmagic), a pure-go port of libmagic with its database embedded, which answers byte for byte what `file` 5.48 does, the same on every host. `--backend=path` runs the `file` the host has on `PATH` (or `FILE=/path/to/file`) instead, one process per cut. descriptions change between libmagic releases, so the json says which ran.
 
 ## how it works ?
 
@@ -48,6 +48,6 @@ chisel does the cutting through [chisel-coverage/pkg](https://github.com/lczyk/c
 
 ```shell
 make build      # ./bin/chisel-file
-make test       # unit tests; the file-vs-builtin one skips without `file`
+make test       # unit tests; the path-vs-builtin one skips without `file`
 make e2e        # real chisel against the real archive and a chisel-releases clone, both backends (needs network)
 ```

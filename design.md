@@ -18,9 +18,9 @@ for each package:
 
 ### backends
 
-`--backend=file|builtin`. the default is `file` when a binary is found, else `builtin`. the json names what ran and its version, since descriptions change between libmagic releases.
+`--backend=builtin|path`. the default is `builtin`, so two hosts get the same lines. the json names what ran and its version, since descriptions change between libmagic releases.
 
-- `file` -- `$FILE`, else `file` on `PATH`. one process per rootfs: `file -N -0 -f -` with the paths on stdin, every flag before `-f` since `file` acts on `-f` while parsing. output is `<path>\0: <line>` per path. the version is the first line of `file --version`.
+- `path` -- the host's `file`: `$FILE`, else `file` on `PATH`. one process per rootfs: `file -N -0 -f -` with the paths on stdin, every flag before `-f` since `file` acts on `-f` while parsing. output is `<path>\0: <line>` per path. the version is the first line of `file --version`.
 - `builtin` -- softmagic's embedded database, loaded once. the stat layer `file` adds before reading bytes is reproduced for what a rootfs holds: `setuid`, `setgid` and `sticky` prefixes, `empty` for a zero-size file, the executable bit handed to the rules (it is what makes a script `executable` in the description), and the text phase's `, ` join after a prefix. the version is softmagic's module version and the `file` release it implements.
 
 the two are checked against each other: a unit test over handmade files, and an e2e test over real debs. a line that differs after normalisation fails the test. the spike that chose softmagic found zero differing lines over 5030 files from eight ubuntu-24.04 rootfs trees on four architectures.
@@ -54,8 +54,8 @@ chisel-file [flags] <package>...
                                definition file, "all" is every slice
                                (default: deb)
       --ignore=<glob>[,...]    leave matching paths out (chisel glob syntax)
-      --backend=<file|builtin> what runs file: the binary on PATH, or the
-                               built-in port (default: file when found)
+      --backend=<builtin|path>    what runs file: the built-in port of libmagic
+                                  (default), or the file binary on PATH
       --raw                    show file's lines as they are, no normalising;
                                with --json, add every architecture's raw line
       --no-group               one block per architecture, raw paths and lines
@@ -106,7 +106,7 @@ a record's `file` is normalised, and its `path` too when it spans several archit
 mirrors chisel-coverage: `cmd/`, `internal/{cli,listing,magic}`, `version.go` + `VERSION`, `e2e/`, lowercase `makefile`, agpl-3.
 
 - `internal/elfline` -- file's elf description parsed field by field, and rendered short for an architecture.
-- `internal/magic` -- the `Backend` interface, the `file` and `builtin` backends, the normalisation of every other line.
+- `internal/magic` -- the `Backend` interface, the `builtin` and `path` backends, the normalisation of every other line.
 - `internal/listing` -- the run: `cuts.Run` with a `Visit` that lists each rootfs, ignores applied, `arch: all` stand-ins copied, then the folding into report groups.
 - `internal/cli` -- flags, text and json rendering, exit codes.
 
@@ -114,9 +114,9 @@ deps: `github.com/lczyk/chisel-coverage/pkg` (`cuts`, `cut`, `cache`, `release`,
 
 ## testing
 
-- unit tests with a fake `chisel` that fills `--root` from the slice name (the fixture chisel-coverage's pool tests use) and a fake `file` that answers from the path, so the listing, ignores, stand-ins and folding are checked without either binary.
+- unit tests with a fake `chisel` that fills `--root` from the slice name (the fixture chisel-coverage's pool tests use) and a fake `file` binary that answers from the path, so the listing, ignores, stand-ins and folding are checked without either binary.
 - the normalisation table against a checked-in corpus of real `file` 5.48 lines from all seven architectures.
-- the builtin backend on handmade files, and against the `file` binary when one is found: the same lines, raw.
+- the builtin backend on handmade files, and against the host's `file` (the path backend) when one is found: the same lines, raw.
 - `e2e/` against the real archive and a real chisel-releases clone, behind `-tags e2e` and `CHISEL_FILE_E2E=1`, running both backends over the same cuts and diffing them.
 
 ## later, maybe
