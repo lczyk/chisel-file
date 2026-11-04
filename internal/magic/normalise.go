@@ -18,6 +18,10 @@ var (
 	longLines = regexp.MustCompile(`with very long lines \([0-9]+\)`)
 	scriptOf  = regexp.MustCompile(` script text executable\b`)
 	phrasing  = strings.NewReplacer("JSON data", "JSON text data")
+	// The stat layer's words before anything else: "setuid ELF ...",
+	// "setuid, setgid POSIX shell script ...", "setuid , ASCII text",
+	// "setuid, empty".
+	mode      = regexp.MustCompile(`^((?:setuid|setgid|sticky)(?:, (?:setuid|setgid|sticky))*)( ?,? )(.+)$`)
 	encodings = strings.NewReplacer(
 		"Unicode text, UTF-8 text", "text",
 		"Unicode text, UTF-8 (with BOM) text", "text",
@@ -80,13 +84,17 @@ func guessed(line string) string {
 // script text executable" / "Python script, ASCII text executable", "JSON
 // data" / "JSON text data", a kind printed twice) is written one way.
 func Normalise(line, arch string) string {
-	if l, ok := elfline.Parse(line); ok {
-		return l.Short(arch)
-	}
 	// A symlink's target is a path, which names the architecture the way
 	// paths do.
 	if target, ok := strings.CutPrefix(line, "symbolic link to "); ok {
 		return "symbolic link to " + fold.Normalise(target, arch)
+	}
+	if l, ok := elfline.Parse(line); ok {
+		return l.Short(arch)
+	}
+	// The mode words stay as they are, in front of the rest normalised.
+	if m := mode.FindStringSubmatch(line); m != nil {
+		return m[1] + m[2] + Normalise(m[3], arch)
 	}
 	line = buildID.ReplaceAllString(line, "")
 	line = forLinux.ReplaceAllString(line, "")

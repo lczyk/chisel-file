@@ -7,6 +7,7 @@ import (
 	"io"
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/lczyk/assert"
@@ -131,10 +132,21 @@ func TestStyleFor(t *testing.T) {
 	assert.Equal(t, styleFor(os.Stdout), style{})
 }
 
+// Without grouping every record is one architecture's own path and line.
+func TestRenderJSONUngrouped(t *testing.T) {
+	var out bytes.Buffer
+	run := runInfo{Backend: "builtin", Magic: "softmagic (file 5.48)", Chisel: "v1", Release: "ubuntu-24.04"}
+	assert.NoError(t, renderJSON(&out, run, sample()[:1], false, false))
+	assert.ContainsString(t, out.String(), `"path": "/usr/lib/x86_64-linux-gnu/libssl.so.3"`)
+	assert.ContainsString(t, out.String(), `"path": "/usr/lib/aarch64-linux-gnu/libssl.so.3"`)
+	assert.That(t, !strings.Contains(out.String(), "<arch>"))
+	assert.ContainsString(t, out.String(), "ELF 64-bit LSB shared object, ARM aarch64")
+}
+
 func TestRenderJSON(t *testing.T) {
 	var out bytes.Buffer
 	run := runInfo{Backend: "path", Magic: "file-5.48", Chisel: "v1", Release: "ubuntu-24.04"}
-	assert.NoError(t, renderJSON(&out, run, sample(), true))
+	assert.NoError(t, renderJSON(&out, run, sample(), true, true))
 	assert.ContainsString(t, out.String(), `"path": "/usr/lib/<arch>-linux-<gnu>/libssl.so.3"`)
 	var got struct {
 		Run      runInfo `json:"run"`
@@ -176,7 +188,7 @@ func TestRenderJSON(t *testing.T) {
 	assert.ContainsString(t, openssl.Raw["arm64"], "ARM aarch64")
 
 	out.Reset()
-	assert.NoError(t, renderJSON(&out, run, sample(), false))
+	assert.NoError(t, renderJSON(&out, run, sample(), false, true))
 	assert.That(t, !bytes.Contains(out.Bytes(), []byte(`"raw"`)))
 }
 

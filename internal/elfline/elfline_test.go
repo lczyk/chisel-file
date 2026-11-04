@@ -99,6 +99,11 @@ func TestShort(t *testing.T) {
 			"ELF <arch> exec, static, stripped"},
 		{"ELF 32-bit MSB executable, PowerPC or cisco 4500, version 1 (SYSV), statically linked, stripped", "ppc64el",
 			"ELF 32-bit MSB exec, PowerPC or cisco 4500, static, stripped"},
+		// The known machine in the other byte order or class is nobody's.
+		{"ELF 64-bit MSB executable, 64-bit PowerPC or cisco 7500, version 1 (SYSV), statically linked, stripped", "ppc64el",
+			"ELF 64-bit MSB exec, 64-bit PowerPC or cisco 7500, static, stripped"},
+		{"ELF 32-bit LSB executable, x86-64, version 1 (SYSV), statically linked, stripped", "amd64",
+			"ELF 32-bit LSB exec, x86-64, static, stripped"},
 	} {
 		l, ok := Parse(tc.line)
 		assert.That(t, ok, tc.line)

@@ -342,6 +342,32 @@ func (broken) Identify(string, []string) ([]string, error) {
 	return nil, errors.New("no magic today")
 }
 
+// A slice with nothing on one architecture and files on the others is a
+// block of its own for that architecture, not silently theirs too.
+func TestGroupsEmptyOnOneArch(t *testing.T) {
+	entry := func(path, line string) magic.Entry { return magic.Entry{Path: path, Line: line} }
+	arch := func(name string) Arch {
+		return Arch{Arch: name, Available: true, Version: "1", Slices: map[string][]magic.Entry{
+			"bins": {entry("/usr/bin/x", "data")},
+			"libs": {entry("/usr/lib/x", "data")},
+		}}
+	}
+	amd64, arm64, s390x := arch("amd64"), arch("arm64"), arch("s390x")
+	arm64.Slices["libs"] = nil
+	s390x.Slices["libs"] = nil
+	g := Groups(Package{Slices: []string{"bins", "libs"}, Arches: []Arch{amd64, arm64, s390x}})
+	assert.Len(t, g, 3)
+	assert.EqualArrays(t, g[0].Arches, []string{"amd64", "arm64", "s390x"})
+	assert.Len(t, g[0].Slices, 1)
+	assert.Equal(t, g[0].Slices[0].Name, "bins")
+	assert.EqualArrays(t, g[1].Arches, []string{"arm64", "s390x"})
+	assert.Len(t, g[1].Slices, 1)
+	assert.Equal(t, g[1].Slices[0].Name, "libs")
+	assert.Len(t, g[1].Slices[0].Files, 0)
+	assert.EqualArrays(t, g[2].Arches, []string{"amd64"})
+	assert.Equal(t, g[2].Slices[0].Files[0].Path, "/usr/lib/x")
+}
+
 func TestGroupsMergeSlicesOfTheSameArches(t *testing.T) {
 	entry := func(path, line string) magic.Entry { return magic.Entry{Path: path, Line: line} }
 	arch := func(name string) Arch {

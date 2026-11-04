@@ -9,6 +9,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"sort"
+	"strings"
 )
 
 // Backend answers what file(1) prints for regular files.
@@ -62,31 +63,28 @@ func NewPath() (Backend, error) {
 		return nil, fmt.Errorf("%s --version: %w", bin, err)
 	}
 	version := string(out)
-	if i := indexByte(version, '\n'); i >= 0 {
+	if i := strings.IndexByte(version, '\n'); i >= 0 {
 		version = version[:i]
 	}
 	return &pathBackend{bin: bin, version: version}, nil
 }
 
-func indexByte(s string, c byte) int {
-	for i := 0; i < len(s); i++ {
-		if s[i] == c {
-			return i
-		}
-	}
-	return -1
-}
-
 // List describes every entry of a rootfs listing: regular files through the
 // backend, symlinks as "symbolic link to <target>" from the tool itself,
 // since file(1) would resolve the target against the host rather than the
-// rootfs. Directories (paths ending in /) are left out. The result is
-// sorted by path.
+// rootfs, and anything else (a fifo, a socket, a device) by file(1)'s word
+// for it. Directories (paths ending in /) are left out. A path with a
+// newline in it gets an error line, since the file binary takes one path
+// per line. The result is sorted by path.
 func List(b Backend, root string, paths []string) ([]Entry, error) {
 	var regular []string
 	var out []Entry
 	for _, p := range paths {
 		if len(p) == 0 || p[len(p)-1] == '/' {
+			continue
+		}
+		if strings.ContainsRune(p, '\n') {
+			out = append(out, Entry{Path: p, Line: "error: path contains a newline"})
 			continue
 		}
 		info, err := os.Lstat(filepath.Join(root, p))
@@ -103,7 +101,7 @@ func List(b Backend, root string, paths []string) ([]Entry, error) {
 		case info.Mode().IsRegular():
 			regular = append(regular, p)
 		default:
-			out = append(out, Entry{Path: p, Line: info.Mode().Type().String()})
+			out = append(out, Entry{Path: p, Line: special(info.Mode())})
 		}
 	}
 	if len(regular) > 0 {
@@ -120,4 +118,20 @@ func List(b Backend, root string, paths []string) ([]Entry, error) {
 	}
 	sort.Slice(out, func(i, j int) bool { return out[i].Path < out[j].Path })
 	return out, nil
+}
+
+// special is file(1)'s word for a file that is not regular, a symlink or
+// a directory.
+func special(m os.FileMode) string {
+	switch {
+	case m&os.ModeNamedPipe != 0:
+		return "fifo (named pipe)"
+	case m&os.ModeSocket != 0:
+		return "socket"
+	case m&os.ModeCharDevice != 0:
+		return "character special"
+	case m&os.ModeDevice != 0:
+		return "block special"
+	}
+	return m.Type().String()
 }

@@ -265,6 +265,7 @@ func split(names []string, arches []Arch) []Group {
 		items := make([][]fold.Item, len(arches))
 		lines := map[string]string{} // arch + path -> file's own line
 		empty := true
+		var none []string // architectures where the slice has nothing
 		for i, a := range arches {
 			// An arch: all package is one deb everywhere, so nothing in it
 			// names the architecture: paths and lines are compared as they are.
@@ -280,6 +281,9 @@ func split(names []string, arches []Arch) []Group {
 				items[i] = append(items[i], fold.Item{Key: path, Tag: magic.Normalise(e.Line, arch), Raw: e.Path})
 				lines[a.Arch+"\x00"+e.Path] = e.Line
 				empty = false
+			}
+			if len(items[i]) == 0 {
+				none = append(none, a.Arch)
 			}
 		}
 		if empty {
@@ -300,6 +304,12 @@ func split(names []string, arches []Arch) []Group {
 			}
 			g := group(fg.Arches)
 			g.Slices = append(g.Slices, sg)
+		}
+		if len(none) > 0 {
+			// Nothing on these architectures is a state of its own, one
+			// block for them, so the slice is not silently theirs too.
+			g := group(none)
+			g.Slices = append(g.Slices, SliceGroup{Name: name, Files: []File{}})
 		}
 	}
 	if len(names) == 0 {

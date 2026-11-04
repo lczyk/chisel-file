@@ -86,6 +86,10 @@ func Main(args []string) int {
 	dir, err := release.Resolve(ctx, f.Release, cache.Dir(), runner.Fetch, func(format string, args ...any) {
 		fmt.Fprintf(os.Stderr, "%s %s\n", cut.Stamp(), fmt.Sprintf(format, args...))
 	})
+	if ctx.Err() != nil {
+		errf(errors.New("interrupted"))
+		return 130
+	}
 	if err != nil {
 		errf(err)
 		return 2
@@ -121,7 +125,7 @@ func Main(args []string) int {
 
 	if f.JSON {
 		run := runInfo{Backend: backend.Name(), Magic: backend.Version(), Chisel: chiselVersion(runner.Bin), Release: f.Release}
-		if err := renderJSON(os.Stdout, run, results, f.Raw); err != nil {
+		if err := renderJSON(os.Stdout, run, results, f.Raw, !f.NoGroup); err != nil {
 			errf(err)
 			return 2
 		}

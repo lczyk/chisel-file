@@ -72,6 +72,13 @@ func TestNormalise(t *testing.T) {
 		{"ASCII text, with CRLF line terminators", "amd64", "text, with CRLF line terminators"},
 		{"POSIX shell script, ASCII text executable", "amd64", "POSIX shell script, text executable"},
 		{"empty", "amd64", "empty"},
+		// The mode words stay in front of the rest normalised.
+		{"setuid Python script text executable Python script text executable, ASCII text", "amd64", "setuid Python script, text executable"},
+		{"setuid, setgid C source, ASCII text", "amd64", "setuid, setgid text"},
+		{"setuid , ASCII text", "amd64", "setuid , text"},
+		{"sticky, empty", "amd64", "sticky, empty"},
+		// A symlink's target is a path whatever it looks like.
+		{"symbolic link to ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), stripped", "amd64", "symbolic link to ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), stripped"},
 		{"symbolic link to libz.so.1.3", "amd64", "symbolic link to libz.so.1.3"},
 		{"symbolic link to x86_64-linux-gnu-ld.bfd", "amd64", "symbolic link to <arch>-linux-<gnu>-ld.bfd"},
 		{"symbolic link to ../lib/aarch64-linux-gnu/ld-linux-aarch64.so.1", "arm64", "symbolic link to ../lib/<arch>-linux-<gnu>/ld-linux-<arch>.so.1"},

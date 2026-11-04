@@ -141,7 +141,7 @@ type jsonFile struct {
 // line is normalised, the path too when the record spans several
 // architectures; with raw, every record also carries each architecture's
 // own line.
-func renderJSON(w io.Writer, run runInfo, pkgs []listing.Package, raw bool) error {
+func renderJSON(w io.Writer, run runInfo, pkgs []listing.Package, raw, group bool) error {
 	out := jsonOut{Run: run, Packages: []jsonPackage{}}
 	for _, p := range pkgs {
 		jp := jsonPackage{Name: p.Name, Arches: []jsonArch{}, Slices: []jsonSlice{}}
@@ -157,7 +157,11 @@ func renderJSON(w io.Writer, run runInfo, pkgs []listing.Package, raw bool) erro
 			js := &jsonSlice{Name: name, Files: []jsonFile{}}
 			slices[name] = js
 		}
-		for _, g := range listing.Groups(p) {
+		groups := listing.Ungrouped(p)
+		if group {
+			groups = listing.Groups(p)
+		}
+		for _, g := range groups {
 			for _, sg := range g.Slices {
 				for _, f := range sg.Files {
 					jf := jsonFile{Path: f.Path, Arches: g.Arches, File: f.Line}

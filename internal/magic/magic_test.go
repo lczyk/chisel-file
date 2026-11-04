@@ -6,6 +6,7 @@ import (
 	"os/exec"
 	"path/filepath"
 	"strings"
+	"syscall"
 	"testing"
 
 	"github.com/lczyk/assert"
@@ -39,6 +40,7 @@ func minimalELF() []byte {
 func rootfs(t *testing.T) (string, []string) {
 	t.Helper()
 	root := t.TempDir()
+	assert.NoError(t, os.MkdirAll(filepath.Join(root, "run"), 0755))
 	write := func(p string, content []byte, mode os.FileMode) {
 		t.Helper()
 		assert.NoError(t, os.MkdirAll(filepath.Dir(filepath.Join(root, p)), 0755))
@@ -55,7 +57,9 @@ func rootfs(t *testing.T) (string, []string) {
 	write("usr/share/data", []byte{0, 1, 2, 3, 0xff, 0xfe}, 0644)
 	assert.NoError(t, os.Symlink("script", filepath.Join(root, "usr/bin/sh")))
 	assert.NoError(t, os.Symlink("/nope", filepath.Join(root, "usr/bin/dangling")))
-	paths := []string{"/etc/", "/etc/conf", "/etc/empty", "/etc/utf8", "/usr/", "/usr/bin/", "/usr/bin/dangling", "/usr/bin/elf", "/usr/bin/py", "/usr/bin/script", "/usr/bin/sh", "/usr/bin/suid", "/usr/share/", "/usr/share/data"}
+	assert.NoError(t, syscall.Mkfifo(filepath.Join(root, "run/pipe"), 0644))
+	write("etc/odd\nname", []byte("x\n"), 0644)
+	paths := []string{"/etc/", "/etc/conf", "/etc/empty", "/etc/odd\nname", "/etc/utf8", "/run/", "/run/pipe", "/usr/", "/usr/bin/", "/usr/bin/dangling", "/usr/bin/elf", "/usr/bin/py", "/usr/bin/script", "/usr/bin/sh", "/usr/bin/suid", "/usr/share/", "/usr/share/data"}
 	return root, paths
 }
 
@@ -74,7 +78,9 @@ func TestBuiltinList(t *testing.T) {
 	assert.EqualArrays(t, got, []string{
 		"/etc/conf: ASCII text",
 		"/etc/empty: empty",
+		"/etc/odd\nname: error: path contains a newline",
 		"/etc/utf8: Unicode text, UTF-8 text",
+		"/run/pipe: fifo (named pipe)",
 		"/usr/bin/dangling: symbolic link to /nope",
 		"/usr/bin/elf: ELF 64-bit LSB executable, x86-64, version 1 (SYSV), statically linked, no section header",
 		"/usr/bin/py: Python script, ASCII text executable",

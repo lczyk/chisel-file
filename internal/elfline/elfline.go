@@ -24,13 +24,17 @@ type Line struct {
 	Stripped string   // "stripped" or "not stripped", "" when file said neither
 }
 
-// known is what names an architecture in an ELF description: how the
-// machine field starts, in every spelling a libmagic release has used, and
-// the loader its binaries name. The field goes on with the binary's own
-// flags (", RVC, double-float ABI", ", OpenPOWER ELF V2 ABI"), which are
-// not the architecture's name and are dropped with it.
+// known is what names an architecture in an ELF description: its class
+// and byte order, how the machine field starts, in every spelling a
+// libmagic release has used, and the loader its binaries name. The machine
+// field goes on with the binary's own flags (", RVC, double-float ABI",
+// ", OpenPOWER ELF V2 ABI"), which are not the architecture's name and
+// are dropped with it. The same machine in the other byte order or class
+// (a big-endian PowerPC64 binary on ppc64el) is not the architecture's.
 type known struct {
 	name     string // the deb architecture
+	class    string
+	endian   string
 	machines []string
 	loader   string
 }
@@ -38,20 +42,24 @@ type known struct {
 // arches is scanned in order, so a machine that is a prefix of another's
 // must come after it.
 var arches = []known{
-	{"amd64", []string{"x86-64"}, "/lib64/ld-linux-x86-64.so.2"},
-	{"arm64", []string{"ARM aarch64"}, "/lib/ld-linux-aarch64.so.1"},
-	{"armhf", []string{"ARM, EABI", "ARM"}, "/lib/ld-linux-armhf.so.3"},
-	{"i386", []string{"Intel i386", "Intel 80386"}, "/lib/ld-linux.so.2"},
-	{"ppc64el", []string{"64-bit PowerPC or cisco 7500"}, "/lib64/ld64.so.2"},
-	{"riscv64", []string{"UCB RISC-V"}, "/lib/ld-linux-riscv64-lp64d.so.1"},
-	{"s390x", []string{"IBM S/390"}, "/lib/ld64.so.1"},
+	{"amd64", "64-bit", "LSB", []string{"x86-64"}, "/lib64/ld-linux-x86-64.so.2"},
+	{"arm64", "64-bit", "LSB", []string{"ARM aarch64"}, "/lib/ld-linux-aarch64.so.1"},
+	{"armhf", "32-bit", "LSB", []string{"ARM, EABI", "ARM"}, "/lib/ld-linux-armhf.so.3"},
+	{"i386", "32-bit", "LSB", []string{"Intel i386", "Intel 80386"}, "/lib/ld-linux.so.2"},
+	{"ppc64el", "64-bit", "LSB", []string{"64-bit PowerPC or cisco 7500"}, "/lib64/ld64.so.2"},
+	{"riscv64", "64-bit", "LSB", []string{"UCB RISC-V"}, "/lib/ld-linux-riscv64-lp64d.so.1"},
+	{"s390x", "64-bit", "MSB", []string{"IBM S/390"}, "/lib/ld64.so.1"},
 }
 
-// matches reports whether the machine field is this architecture's: one of
-// its spellings, alone or followed by flags.
-func (k known) matches(machine string) bool {
+// matches reports whether the line is this architecture's: its class and
+// byte order, and one of its machine spellings, alone or followed by
+// flags.
+func (k known) matches(l Line) bool {
+	if l.Class != k.class || l.Endian != k.endian {
+		return false
+	}
 	for _, m := range k.machines {
-		if machine == m || strings.HasPrefix(machine, m+", ") || strings.HasPrefix(machine, m+" ") {
+		if l.Machine == m || strings.HasPrefix(l.Machine, m+", ") || strings.HasPrefix(l.Machine, m+" ") {
 			return true
 		}
 	}
@@ -93,8 +101,8 @@ func Parse(line string) (l Line, ok bool) {
 	return l, true
 }
 
-// Arch is the deb architecture the machine names, "" for one not in the
-// table.
+// Arch is the deb architecture the class, byte order and machine name, ""
+// for one not in the table.
 func (l Line) Arch() string {
 	if k := l.known(); k != nil {
 		return k.name
@@ -104,7 +112,7 @@ func (l Line) Arch() string {
 
 func (l Line) known() *known {
 	for i := range arches {
-		if arches[i].matches(l.Machine) {
+		if arches[i].matches(l) {
 			return &arches[i]
 		}
 	}
