@@ -46,7 +46,9 @@ func (s style) wrap(code, text string) string {
 // or per architecture when group is false: a header line, then one
 // "<path>: <line>" per file, a symlink as "<path> -> <target>". Nothing is indented and no line is blank, so
 // the output greps and pipes. A package that is not available or whose cut
-// failed is one line per such architecture, before its slices.
+// failed is one line per such architecture, before its slices, and one
+// with nothing to list (no slice definition file, --slice naming none of
+// its slices) is one line per group of architectures.
 func renderText(w io.Writer, pkgs []listing.Package, group bool, s style) {
 	for _, p := range pkgs {
 		groups := listing.Ungrouped(p)
@@ -73,6 +75,10 @@ func renderGroup(w io.Writer, p listing.Package, g listing.Group, s style) {
 	version := g.Version
 	if g.DebArch == "all" {
 		version += " (all)"
+	}
+	if len(g.Slices) == 0 {
+		fmt.Fprintf(w, "%s %s: %s\n", name, arches, s.wrap(s.yellow, "no slices"))
+		return
 	}
 	for _, sg := range g.Slices {
 		head := name

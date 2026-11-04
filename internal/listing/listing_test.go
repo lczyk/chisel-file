@@ -269,10 +269,30 @@ func TestRunDeb(t *testing.T) {
 	assert.EqualArrays(t, lines(res[0].Arches[0].Slices["deb"]), []string{"/usr/bin/zsh: a shell"})
 }
 
-func TestRunNoSDFNeedsDeb(t *testing.T) {
+// A package with no slice definition file has no slices: --slice all
+// lists nothing of it, a bare slice name is not its concern, a prefixed
+// one is.
+func TestRunNoSDFHasNoSlices(t *testing.T) {
 	f := setup(t)
-	_, err := Run(context.Background(), f.opts, []string{"zsh"})
-	assert.Error(t, err, "zsh.yaml")
+	f.opts.Cuts.Arches = []string{"amd64"}
+	write(t, filepath.Join(f.trees, "amd64", "zsh_file-all/usr/bin/zsh"), "a shell")
+	res, err := Run(context.Background(), f.opts, []string{"bash", "zsh"})
+	assert.NoError(t, err)
+	assert.EqualArrays(t, res[1].Slices, []string{})
+	assert.That(t, res[1].Arches[0].Available)
+	assert.Equal(t, res[1].Arches[0].Version, "")
+	assert.Len(t, Groups(res[1]), 1)
+	assert.Len(t, Groups(res[1])[0].Slices, 0)
+
+	f.opts.Cuts.Only = []string{"bins"}
+	res, err = Run(context.Background(), f.opts, []string{"bash", "zsh"})
+	assert.NoError(t, err)
+	assert.EqualArrays(t, res[0].Slices, []string{"bins"})
+	assert.EqualArrays(t, res[1].Slices, []string{})
+
+	f.opts.Cuts.Only = []string{"zsh_bins"}
+	_, err = Run(context.Background(), f.opts, []string{"bash", "zsh"})
+	assert.Error(t, err, "zsh has no slice")
 }
 
 func TestRunArchAllStandsIn(t *testing.T) {

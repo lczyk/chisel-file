@@ -55,9 +55,11 @@ type Package struct {
 
 type key struct{ pkg, arch, slice string }
 
-// Run cuts every package on every architecture and lists each cut. It
-// fails up front as cuts.Run does, and on a package whose real slice is
-// named DebSlice when the whole deb is listed too.
+// Run cuts every package on every architecture and lists each cut. A
+// package with no slice definition file is one with no slices: its deb
+// is listed when the deb is, and --slice finds nothing of it. Run fails up
+// front as cuts.Run does, and on a package whose real slice is named
+// DebSlice when the whole deb is listed too.
 func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 	if opts.Backend == nil {
 		return nil, errors.New("no backend")
@@ -81,7 +83,7 @@ func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 	var failed error
 	co := opts.Cuts
 	co.Whole = opts.Deb
-	co.Optional = opts.Deb
+	co.Optional = true
 	co.Prefix = string(prefix)
 	co.Visit = func(c cuts.Cut) {
 		if prefix.IsIgnore(c.Slice) {
@@ -299,6 +301,10 @@ func split(names []string, arches []Arch) []Group {
 			g := group(fg.Arches)
 			g.Slices = append(g.Slices, sg)
 		}
+	}
+	if len(names) == 0 {
+		// Nothing to list is still a state these architectures share.
+		group(order)
 	}
 	rank := map[string]int{}
 	for i, a := range order {
