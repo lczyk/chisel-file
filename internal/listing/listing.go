@@ -261,6 +261,7 @@ func split(names []string, arches []Arch) []Group {
 	}
 	for _, name := range names {
 		items := make([][]fold.Item, len(arches))
+		lines := map[string]string{} // arch + path -> file's own line
 		empty := true
 		for i, a := range arches {
 			// An arch: all package is one deb everywhere, so nothing in it
@@ -274,7 +275,8 @@ func split(names []string, arches []Arch) []Group {
 				if arch != "" {
 					path = fold.Normalise(e.Path, arch)
 				}
-				items[i] = append(items[i], fold.Item{Key: path, Tag: magic.Normalise(e.Line, arch), Raw: e.Path + "\x00" + e.Line})
+				items[i] = append(items[i], fold.Item{Key: path, Tag: magic.Normalise(e.Line, arch), Raw: e.Path})
+				lines[a.Arch+"\x00"+e.Path] = e.Line
 				empty = false
 			}
 		}
@@ -288,12 +290,9 @@ func split(names []string, arches []Arch) []Group {
 		for _, fg := range fold.Fold(order, items) {
 			sg := SliceGroup{Name: name, Files: make([]File, 0, len(fg.Entries))}
 			for _, e := range fg.Entries {
-				f := File{Path: e.Key, Line: e.Tag, Raw: make([]string, len(e.Raw))}
-				for i, raw := range e.Raw {
-					_, f.Raw[i], _ = strings.Cut(raw, "\x00")
-				}
-				if len(e.Raw) == 1 {
-					f.Path, _, _ = strings.Cut(e.Raw[0], "\x00")
+				f := File{Path: e.Shown(), Line: e.Tag, Raw: make([]string, len(e.Raw))}
+				for i, path := range e.Raw {
+					f.Raw[i] = lines[fg.Arches[i]+"\x00"+path]
 				}
 				sg.Files = append(sg.Files, f)
 			}
