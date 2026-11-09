@@ -14,7 +14,7 @@ import (
 
 	"github.com/lczyk/chisel-coverage/pkg/cuts"
 	"github.com/lczyk/chisel-coverage/pkg/fold"
-	"github.com/lczyk/chisel-coverage/pkg/sdf"
+	"github.com/lczyk/chisel-coverage/pkg/packageslicesfile"
 
 	"github.com/lczyk/chisel-file/internal/magic"
 )
@@ -24,7 +24,7 @@ const DebSlice = "deb"
 
 // prefix names of the run's own slices in the synthesised file and
 // the verbose lines: file-all, file-probe, file-ignore-<n>.
-const prefix sdf.Names = "file"
+const prefix packageslicesfile.Names = "file"
 
 // Options configures a run. Cuts is passed to cuts.Run with Whole,
 // Optional and Visit set here.
@@ -66,7 +66,7 @@ func Run(ctx context.Context, opts Options, pkgs []string) ([]Package, error) {
 	}
 	if opts.Deb {
 		for _, pkg := range pkgs {
-			def, err := sdf.Read(opts.Cuts.Release, pkg)
+			def, err := packageslicesfile.Read(opts.Cuts.Release, pkg)
 			if errors.Is(err, fs.ErrNotExist) {
 				continue
 			}
