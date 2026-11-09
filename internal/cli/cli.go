@@ -147,7 +147,7 @@ func Main(args []string) int {
 type flags struct {
 	Release string   `long:"release" value-name:"<dir|name>" default:"." description:"chisel-releases checkout, or a release name like ubuntu-24.04 fetched by chisel into its cache"`
 	Arches  []string `long:"arch" value-name:"<a>[,<a>...]" description:"architectures to list; \"all\" for every one (default: host)"`
-	Slices  []string `long:"slice" value-name:"<s>[,<s>...]" description:"slices to list, bare or <package>_<slice>; \"deb\" is the whole deb, which needs no slice definition file, \"all\" is every slice (default: deb)"`
+	Slices  []string `long:"slice" value-name:"<s>[,<s>...]" description:"slices to list, bare or <package>_<slice>; \"deb\" is the whole deb, which needs no package slices file, \"all\" is every slice (default: deb)"`
 	Ignores []string `long:"ignore" value-name:"<glob>[,...]" description:"leave matching paths out (chisel glob syntax)"`
 	Backend string   `long:"backend" value-name:"<builtin|path>" description:"what runs file: the built-in port of libmagic (default), or the file binary on PATH"`
 	Raw     bool     `long:"raw" description:"show file's lines as they are, no normalising; with --json, add every architecture's raw line"`
