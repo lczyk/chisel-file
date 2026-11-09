@@ -47,7 +47,7 @@ func (s style) wrap(code, text string) string {
 // "<path>: <line>" per file, a symlink as "<path> -> <target>". Nothing is indented and no line is blank, so
 // the output greps and pipes. A package that is not available or whose cut
 // failed is one line per such architecture, before its slices, and one
-// with nothing to list (no slice definition file, --slice naming none of
+// with nothing to list (no package slices file, --slice naming none of
 // its slices) is one line per group of architectures.
 func renderText(w io.Writer, pkgs []listing.Package, group bool, s style) {
 	for _, p := range pkgs {

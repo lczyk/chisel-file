@@ -56,7 +56,7 @@ type Package struct {
 type key struct{ pkg, arch, slice string }
 
 // Run cuts every package on every architecture and lists each cut. A
-// package with no slice definition file is one with no slices: its deb
+// package with no package slices file is one with no slices: its deb
 // is listed when the deb is, and --slice finds nothing of it. Run fails up
 // front as cuts.Run does, and on a package whose real slice is named
 // DebSlice when the whole deb is listed too.

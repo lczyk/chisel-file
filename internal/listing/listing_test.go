@@ -241,7 +241,7 @@ func TestRunDeb(t *testing.T) {
 		"/usr/bin/sh: symbolic link to bash",
 		"/usr/lib/x86_64-linux-gnu/bash/loadables.so: ELF 64-bit LSB shared object, x86-64, version 1 (SYSV), dynamically linked, stripped",
 	})
-	// zsh has no sdf: the deb alone.
+	// zsh has no package slices file: the deb alone.
 	assert.EqualArrays(t, res[1].Slices, []string{"deb"})
 	assert.That(t, res[1].Arches[0].Available)
 	assert.EqualArrays(t, lines(res[1].Arches[0].Slices["deb"]), []string{"/usr/bin/zsh: a shell"})
@@ -269,10 +269,10 @@ func TestRunDeb(t *testing.T) {
 	assert.EqualArrays(t, lines(res[0].Arches[0].Slices["deb"]), []string{"/usr/bin/zsh: a shell"})
 }
 
-// A package with no slice definition file has no slices: --slice all
+// A package with no package slices file has no slices: --slice all
 // lists nothing of it, a bare slice name is not its concern, a prefixed
 // one is.
-func TestRunNoSDFHasNoSlices(t *testing.T) {
+func TestRunNoPackageSlicesFileHasNoSlices(t *testing.T) {
 	f := setup(t)
 	f.opts.Cuts.Arches = []string{"amd64"}
 	write(t, filepath.Join(f.trees, "amd64", "zsh_file-all/usr/bin/zsh"), "a shell")

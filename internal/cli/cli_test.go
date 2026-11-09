@@ -292,7 +292,7 @@ func TestMainExitCodes(t *testing.T) {
 		code, _ := captureStdout(t, func() int { return Main(args) })
 		assert.Equal(t, code, 2, args)
 	}
-	// A package with no slice definition file has no slices, and --slice
+	// A package with no package slices file has no slices, and --slice
 	// all finds nothing of it (the fake chisel here has every package).
 	code, out = captureStdout(t, func() int {
 		return Main([]string{"--release", rel, "--arch", "amd64", "--backend", "builtin", "--slice", "all", "nosuch"})
