@@ -110,7 +110,7 @@ mirrors chisel-coverage: `cmd/`, `internal/{cli,listing,magic}`, `version.go` + 
 - `internal/listing` -- the run: `cuts.Run` with a `Visit` that lists each rootfs, ignores applied, `arch: all` stand-ins copied, then the folding into report groups.
 - `internal/cli` -- flags, text and json rendering, exit codes.
 
-deps: `github.com/lczyk/chisel-coverage/pkg` (`cuts`, `cut`, `cache`, `release`, `sdf`, `fold`), `code.eitanity.com/softmagic`, `github.com/jessevdk/go-flags`, `github.com/lczyk/assert`, `github.com/lczyk/version/go`.
+deps: `github.com/lczyk/chisel-coverage/pkg` (`cuts`, `cut`, `cache`, `release`, `packageslicesfile`, `fold`), `code.eitanity.com/softmagic`, `github.com/jessevdk/go-flags`, `github.com/lczyk/assert`, `github.com/lczyk/version/go`.
 
 ## testing
 
