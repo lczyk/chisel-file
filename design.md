@@ -69,6 +69,8 @@ chisel-file [flags] <package>...
   -h, --help                   this text
 ```
 
+a package may be given as the path of its file: an argument ending in `.yaml` is its basename without the suffix (`packageslicesfile.Package` of chisel-coverage), so `slices/bash.yaml` is `bash` and the shell completes it. the path itself is not opened, and the file is still read from `--release`.
+
 a package with no package slices file in the release is a package with no slices, not an error: `cuts.Options.Optional` is always set, so its deb is cut and listed like any other, with `--ignore`, and `--slice all` or a bare slice name finds nothing of it (a prefixed `<package>_<slice>` is still an error). a package the archive does not have either is `not available` on every architecture. a package with nothing to list is one `no slices` line per group of architectures in the text report and an empty `slices` list in the json. flags are parsed by go-flags, as in chisel and chisel-coverage. listing the deb of a package that has a real slice named `deb` is an error, and a real slice named `all` cannot be picked alone. exit codes: 0 ran fine; 2 usage error, io error, no backend, or a cut that failed; 130 interrupted. a path that `file` could not read is a line (`error: <text>`), not a failure. the text report gets the same little colour as chisel-coverage, only on a terminal with `NO_COLOR` unset.
 
 ## report
