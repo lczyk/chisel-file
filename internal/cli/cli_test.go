@@ -31,6 +31,11 @@ func TestParseArgs(t *testing.T) {
 	assert.Equal(t, f.Backend, "builtin")
 	assert.Len(t, f.Verbose, 1)
 
+	// A package may be named by the path of its file.
+	_, pkgs, err = parseArgs([]string{"slices/bash.yaml", "../rel/slices/extra/dash.yaml", "zsh"}, io.Discard)
+	assert.NoError(t, err)
+	assert.EqualArrays(t, pkgs, []string{"bash", "dash", "zsh"})
+
 	f, _, err = parseArgs([]string{"bash"}, io.Discard)
 	assert.NoError(t, err)
 	assert.Equal(t, f.Release, ".")

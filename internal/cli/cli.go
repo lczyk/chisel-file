@@ -18,6 +18,7 @@ import (
 	"github.com/lczyk/chisel-coverage/pkg/cache"
 	"github.com/lczyk/chisel-coverage/pkg/cut"
 	"github.com/lczyk/chisel-coverage/pkg/cuts"
+	"github.com/lczyk/chisel-coverage/pkg/packageslicesfile"
 	"github.com/lczyk/chisel-coverage/pkg/release"
 
 	chiselfile "github.com/lczyk/chisel-file"
@@ -167,7 +168,8 @@ func newParser(f *flags) *goflags.Parser {
 	p.LongDescription = strings.TrimSpace(`
 for each package, every slice is cut on its own against a throwaway copy of
 the release with only that package in it, and file is run over every path
-the cut delivers. the "chisel" binary is found on PATH, or set
+the cut delivers. a package may be given as the path of its file,
+slices/<package>.yaml. the "chisel" binary is found on PATH, or set
 CHISEL=/path/to/chisel; the "file" binary likewise, or FILE=/path/to/file.
 "version" and "help" as the first argument are --version and --help.`)
 	if _, err := p.AddGroup("flags", "", f); err != nil {
@@ -199,6 +201,9 @@ func parseArgs(args []string, help io.Writer) (f flags, pkgs []string, err error
 	case "", "builtin", "path":
 	default:
 		return f, nil, fmt.Errorf("--backend must be builtin or path, not %q", f.Backend)
+	}
+	for i, pkg := range pkgs {
+		pkgs[i] = packageslicesfile.Package(pkg)
 	}
 	return f, pkgs, nil
 }
