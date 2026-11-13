@@ -4,6 +4,7 @@
 [![chisel](https://img.shields.io/badge/%F0%9F%94%A8-chisel-E95420)](https://github.com/canonical/chisel)
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/lczyk/chisel-file)
 ![GitHub Tag](https://img.shields.io/github/v/tag/lczyk/chisel-file?filter=v*&sort=semver&label=release)
+[![lint_and_test](https://github.com/lczyk/chisel-file/actions/workflows/lint_and_test.yml/badge.svg)](https://github.com/lczyk/chisel-file/actions/workflows/lint_and_test.yml)
 
 development tool for [chisel-releases](https://github.com/canonical/chisel-releases) work. for a package, it runs `file` over every path each slice delivers, per architecture, and shows what kind of thing every path is.
 
