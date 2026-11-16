@@ -97,7 +97,7 @@ func sample() []listing.Package {
 
 func TestRenderText(t *testing.T) {
 	var out bytes.Buffer
-	renderText(&out, sample(), true, style{})
+	renderText(&out, sample(), true, false, style{})
 	assert.Equal(t, out.String(), `openssl 3.0.13-1 bins [amd64, arm64]
 /usr/bin/c_rehash: Perl script, text executable
 /usr/bin/openssl: ELF <arch> pie, dynamic, <ld>, stripped
@@ -117,7 +117,7 @@ tzdata 2026a-1 (all) zones [amd64]
 
 func TestRenderTextUngrouped(t *testing.T) {
 	var out bytes.Buffer
-	renderText(&out, sample()[:1], false, style{})
+	renderText(&out, sample()[:1], false, false, style{})
 	assert.ContainsString(t, out.String(), "openssl 3.0.13-1 bins [amd64]\n/usr/bin/c_rehash: Perl script text executable\n/usr/bin/openssl: ELF 64-bit LSB pie executable, x86-64, version 1 (SYSV), dynamically linked, interpreter /lib64/ld-linux-x86-64.so.2, BuildID[sha1]=ab, for GNU/Linux 3.2.0, stripped\n")
 	assert.ContainsString(t, out.String(), "openssl 3.0.13-1 libs [arm64]\n/usr/lib/aarch64-linux-gnu/libssl.so.3: ELF 64-bit LSB shared object, ARM aarch64")
 	assert.ContainsString(t, out.String(), "openssl [i386]: not available\n")
@@ -125,7 +125,7 @@ func TestRenderTextUngrouped(t *testing.T) {
 
 func TestRenderTextColoured(t *testing.T) {
 	var out bytes.Buffer
-	renderText(&out, sample()[:1], true, colours)
+	renderText(&out, sample()[:1], true, false, colours)
 	assert.ContainsString(t, out.String(), "\x1b[1;34mopenssl\x1b[0m 3.0.13-1 bins \x1b[2m[amd64, arm64]\x1b[0m\n")
 	assert.ContainsString(t, out.String(), "\x1b[33mnot available\x1b[0m")
 	assert.ContainsString(t, out.String(), "\x1b[31merror\x1b[0m")

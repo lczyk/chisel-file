@@ -7,6 +7,8 @@ import (
 	"os"
 	"strings"
 
+	"github.com/lczyk/chisel-coverage/pkg/pathtree"
+
 	"github.com/lczyk/chisel-file/internal/listing"
 )
 
@@ -45,23 +47,24 @@ func (s style) wrap(code, text string) string {
 // renderText prints one block per (package, slice, group of architectures),
 // or per architecture when group is false: a header line, then one
 // "<path>: <line>" per file, a symlink as "<path> -> <target>". Nothing is indented and no line is blank, so
-// the output greps and pipes. A package that is not available or whose cut
+// the output greps and pipes. With tree, a block's files are drawn as a
+// tree of their paths instead, a file's name in place of its path. A package that is not available or whose cut
 // failed is one line per such architecture, before its slices, and one
 // with nothing to list (no package slices file, --slice naming none of
 // its slices) is one line per group of architectures.
-func renderText(w io.Writer, pkgs []listing.Package, group bool, s style) {
+func renderText(w io.Writer, pkgs []listing.Package, group, tree bool, s style) {
 	for _, p := range pkgs {
 		groups := listing.Ungrouped(p)
 		if group {
 			groups = listing.Groups(p)
 		}
 		for _, g := range groups {
-			renderGroup(w, p, g, s)
+			renderGroup(w, p, g, tree, s)
 		}
 	}
 }
 
-func renderGroup(w io.Writer, p listing.Package, g listing.Group, s style) {
+func renderGroup(w io.Writer, p listing.Package, g listing.Group, tree bool, s style) {
 	name := s.wrap(s.name, p.Name)
 	arches := s.wrap(s.dim, "["+strings.Join(g.Arches, ", ")+"]")
 	switch {
@@ -86,14 +89,31 @@ func renderGroup(w io.Writer, p listing.Package, g listing.Group, s style) {
 	}
 	for _, sg := range g.Slices {
 		fmt.Fprintf(w, "%s %s %s\n", head, sg.Name, arches)
-		for _, f := range sg.Files {
-			if target, ok := strings.CutPrefix(f.Line, "symbolic link to "); ok {
-				fmt.Fprintf(w, "%s -> %s\n", f.Path, target)
-				continue
+		if tree {
+			paths := make([]string, len(sg.Files))
+			for i, f := range sg.Files {
+				paths[i] = f.Path
 			}
-			fmt.Fprintf(w, "%s: %s\n", f.Path, f.Line)
+			line := func(i int, name string) string { return fileLine(name, sg.Files[i].Line) }
+			dim := func(t string) string { return s.wrap(s.dim, t) }
+			for _, l := range pathtree.Draw(pathtree.Of(paths, line), dim) {
+				fmt.Fprintln(w, l)
+			}
+			continue
+		}
+		for _, f := range sg.Files {
+			fmt.Fprintln(w, fileLine(f.Path, f.Line))
 		}
 	}
+}
+
+// fileLine is a file as the text report prints it, "<path>: <line>", or
+// "<path> -> <target>" for a symlink.
+func fileLine(path, line string) string {
+	if target, ok := strings.CutPrefix(line, "symbolic link to "); ok {
+		return path + " -> " + target
+	}
+	return path + ": " + line
 }
 
 // runInfo names what produced the json: the backend and its libmagic, the

@@ -131,7 +131,7 @@ func Main(args []string) int {
 			return 2
 		}
 	} else {
-		renderText(os.Stdout, results, !f.NoGroup && !f.Raw, styleFor(os.Stdout))
+		renderText(os.Stdout, results, !f.NoGroup && !f.Raw, f.Tree, styleFor(os.Stdout))
 	}
 
 	for _, p := range results {
@@ -154,6 +154,7 @@ type flags struct {
 	Raw     bool     `long:"raw" description:"show file's lines as they are, no normalising; with --json, add every architecture's raw line"`
 	NoGroup bool     `long:"no-group" description:"one block per architecture, raw paths and lines, instead of folding architectures with the same result"`
 	JSON    bool     `long:"json" description:"machine-readable output, folded"`
+	Tree    bool     `short:"T" long:"tree" description:"draw each block's files as a tree of their paths"`
 	Keep    bool     `long:"keep" description:"keep the temp releases and rootfs dirs"`
 	Jobs    int      `short:"j" long:"jobs" value-name:"<n>" default:"-1" description:"cuts to run at once; -1 for one per cpu"`
 	Verbose []bool   `short:"v" long:"verbose" description:"one line per cut on stderr; twice also streams chisel's output"`
@@ -196,6 +197,9 @@ func parseArgs(args []string, help io.Writer) (f flags, pkgs []string, err error
 	}
 	for _, l := range []*[]string{&f.Arches, &f.Slices, &f.Ignores} {
 		*l = splitLists(*l)
+	}
+	if f.Tree && f.JSON {
+		return f, nil, errors.New("--tree draws the text report, so it does not go with --json")
 	}
 	switch f.Backend {
 	case "", "builtin", "path":
