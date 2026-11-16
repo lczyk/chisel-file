@@ -60,6 +60,7 @@ chisel-file [flags] <package>...
                                with --json, add every architecture's raw line
       --no-group               one block per architecture, raw paths and lines
       --json                   machine-readable output, folded
+  -T, --tree                   draw each block's files as a tree of their paths
       --keep                   keep the temp releases and rootfs dirs
   -j, --jobs=<n>               cuts to run at once; -1 for one per cpu
                                (default: -1)
@@ -90,6 +91,8 @@ bash [i386]: not available
 
 a line is `<path>: <line>`, `file`'s own format, sorted by path, except a symlink, which is `<path> -> <target>` (the json keeps `symbolic link to <target>`), so `cut -d: -f2- | sort | uniq -c` is the histogram. a block of one architecture shows its real path, and its line normalised like every other, so that what differs between two blocks is what is left after the noise. `--raw` shows raw lines, which do not fold, so it implies `--no-group` in text.
 
+`--tree` draws each block's files as a tree of their paths with `chisel-coverage/pkg/pathtree`, as `chisel-diff --tree` does: a line is `<name>: <line>` or `<name> -> <target>`, a directory drawn only to hold others is `<name>/`, and a run of them with one child each is one line. the tree is drawn per block, after the folding, so a block of what only some architectures have draws the directories over its files to hold them, as chisel-elftree draws a line of a bigger block as context over one of a smaller. directories are never entries here, so every directory is such a holder. it is the text report drawn another way, so it does not go with `--json`.
+
 `--json` is always folded:
 
 ```json
@@ -112,7 +115,7 @@ mirrors chisel-coverage: `cmd/`, `internal/{cli,listing,magic}`, `version.go` + 
 - `internal/listing` -- the run: `cuts.Run` with a `Visit` that lists each rootfs, ignores applied, `arch: all` stand-ins copied, then the folding into report groups.
 - `internal/cli` -- flags, text and json rendering, exit codes.
 
-deps: `github.com/lczyk/chisel-coverage/pkg` (`cuts`, `cut`, `cache`, `release`, `packageslicesfile`, `fold`), `code.eitanity.com/softmagic`, `github.com/jessevdk/go-flags`, `github.com/lczyk/assert`, `github.com/lczyk/version/go`.
+deps: `github.com/lczyk/chisel-coverage/pkg` (`cuts`, `cut`, `cache`, `release`, `packageslicesfile`, `fold`, `pathtree`), `code.eitanity.com/softmagic`, `github.com/jessevdk/go-flags`, `github.com/lczyk/assert`, `github.com/lczyk/version/go`.
 
 ## testing
 
